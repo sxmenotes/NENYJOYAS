@@ -1,0 +1,311 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    /* Brand Colors (Royal Blue & Clean White) */
+    --color-royal-blue: #162C6D;
+    --color-royal-dark: #0A163B;
+    --color-royal-deep: #060D24;
+    --color-royal-hover: #0F1E4A;
+    --color-royal-light: #EEF2FF;
+    --color-royal-subtle: rgba(22, 44, 109, 0.04);
+
+    --color-bg: #FFFFFF;
+    --color-bg-subtle: #F8FAFC;
+
+    --color-charcoal: #0F172A;
+    --color-text-secondary: #475569;
+    --color-text-muted: #94A3B8;
+
+    --color-border: #E2E8F0;
+    --color-border-hover: #CBD5E1;
+
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-sans);
+    color: var(--color-charcoal);
+    background-color: var(--color-bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Typography Classes */
+.font-serif {
+    font-family: var(--font-serif);
+}
+
+.font-sans {
+    font-family: var(--font-sans);
+}
+
+/* Rounded-Full Pill Buttons (Design System from Hero) */
+.btn-pill-primary {
+    background-color: #FFFFFF;
+    color: var(--color-royal-blue);
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    padding: 0.75rem 1.75rem;
+    min-height: 48px;
+    border-radius: 9999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    border: 2px solid transparent;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+    cursor: pointer;
+}
+
+.btn-pill-primary:hover {
+    background-color: rgba(255, 255, 255, 0.92);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+}
+
+.btn-pill-secondary {
+    background-color: transparent;
+    color: #FFFFFF;
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    padding: 0.75rem 1.75rem;
+    min-height: 48px;
+    border-radius: 9999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+}
+
+.btn-pill-secondary:hover {
+    background-color: #FFFFFF;
+    color: var(--color-royal-blue);
+    border-color: #FFFFFF;
+    transform: translateY(-2px);
+}
+
+/* Light Theme Pill Buttons for body sections */
+.btn-pill-blue {
+    background-color: var(--color-royal-blue);
+    color: #FFFFFF;
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    min-height: 44px;
+    border-radius: 9999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    border: 2px solid var(--color-royal-blue);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+}
+
+.btn-pill-blue:hover {
+    background-color: var(--color-royal-hover);
+    border-color: var(--color-royal-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(22, 44, 109, 0.2);
+}
+
+.btn-pill-outline {
+    background-color: transparent;
+    color: var(--color-royal-blue);
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    min-height: 44px;
+    border-radius: 9999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    border: 2px solid var(--color-border);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+}
+
+.btn-pill-outline:hover {
+    border-color: var(--color-royal-blue);
+    background-color: var(--color-royal-light);
+    transform: translateY(-2px);
+}
+
+/* Photo Placeholder */
+.photo-placeholder {
+    background-color: #F8FAFC;
+    border: 1.5px dashed #CBD5E1;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: #64748B;
+    transition: all 0.25s ease;
+    user-select: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.photo-placeholder:hover {
+    border-color: var(--color-royal-blue);
+    background-color: #EEF2FF;
+    color: var(--color-royal-blue);
+}
+
+.photo-placeholder .badge-num {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.75rem;
+    background-color: #FFFFFF;
+    border: 1px solid #CBD5E1;
+    border-radius: 9999px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.photo-placeholder .sub-label {
+    font-size: 0.6875rem;
+    color: #94A3B8;
+    text-align: center;
+    padding: 0 0.5rem;
+}
+
+/* Hero Background Placeholder */
+.hero-bg-placeholder {
+    background: radial-gradient(circle at top right, #1E3A8A 0%, #0F1E4A 50%, #060D24 100%);
+    position: relative;
+}
+
+.hero-bg-badge {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #FFFFFF;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 0.35rem 0.85rem;
+    border-radius: 9999px;
+}
+
+/* Cards */
+.editorial-card {
+    background-color: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: 1.25rem;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.editorial-card:hover {
+    border-color: rgba(22, 44, 109, 0.3);
+    box-shadow: 0 16px 32px -8px rgba(22, 44, 109, 0.08);
+    transform: translateY(-3px);
+}
+
+/* Badges */
+.badge-editorial {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-royal-blue);
+    padding: 0.35rem 0.85rem;
+    border: 1px solid rgba(22, 44, 109, 0.2);
+    border-radius: 9999px;
+    background-color: var(--color-royal-light);
+}
+
+/* Floating WhatsApp Button */
+.whatsapp-clean-btn {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 99;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    background-color: #128C7E;
+    color: #FFFFFF;
+    padding: 0.8rem 1.4rem;
+    min-height: 48px;
+    border-radius: 9999px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: all 0.25s ease;
+}
+
+.whatsapp-clean-btn:hover {
+    background-color: #075E54;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+/* Scroll Hide Utility */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Anime.js Target Classes */
+.anime-reveal {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #F8FAFC;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #CBD5E1;
+    border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #162C6D;
+}

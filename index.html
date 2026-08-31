@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joyería y Relojería Neny | Talca • Concesionario Oficial Festina</title>
+    <meta name="description" content="Joyería de piezas únicas y catálogo oficial de relojería Festina en Talca, Chile. Cotizaciones personalizadas directamente vía WhatsApp.">
+    <!-- Tailwind CSS (Utilidades de maquetado) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'royal-blue': '#162C6D',
+                        'royal-dark': '#0A163B',
+                        'royal-deep': '#060D24',
+                        'royal-light': '#EEF2FF',
+                        'charcoal': '#0F172A',
+                        'muted-gray': '#475569',
+                        'border-gray': '#E2E8F0',
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="img/joyas-neny-favicon.png?v=3.1.0">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css?v=3.1.0">
+</head>
+<body class="bg-white text-charcoal selection:bg-royal-blue selection:text-white">
+
+    <!-- Header Flotante Superior -->
+        <header class="absolute inset-x-0 top-0 z-30 py-6 sm:py-8 xl:py-10">
+            <div class="px-6 mx-auto sm:px-8 lg:px-12 max-w-7xl">
+                <div class="flex items-center justify-between">
+                    
+                    <!-- Left: Links -->
+                    <div class="hidden md:flex md:items-center md:space-x-8">
+                        <a href="#nosotros" class="font-sans text-sm font-semibold transition-all duration-200 text-charcoal/70 hover:text-charcoal flex items-center gap-1">
+                            Nosotros
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </a>
+                        <a href="#joyeria" class="font-sans text-sm font-semibold transition-all duration-200 text-charcoal/70 hover:text-charcoal">Joyería</a>
+                        <a href="#relojeria" class="font-sans text-sm font-semibold transition-all duration-200 text-charcoal/70 hover:text-charcoal">Relojes</a>
+                        <a href="catalogo.html" class="font-sans text-sm font-semibold transition-all duration-200 text-charcoal/70 hover:text-charcoal">Catálogo</a>
+                    </div>
+
+                    <!-- Botón Hamburguesa Móvil -->
+                    <div class="md:hidden flex-shrink-0">
+                        <button type="button" id="mobileMenuBtn" class="p-2 -m-2 transition-all duration-200 rounded-full text-charcoal hover:bg-black/5 focus:outline-none" aria-label="Abrir menú">
+                            <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Center: Logotipo -->
+                    <div class="flex flex-shrink-0 absolute left-1/2 -translate-x-1/2">
+                        <a href="index.html" class="flex items-center">
+                            <img src="img/joyas-neny-logo.png?v=3.1.0" alt="Joyas Neny" class="h-14 md:h-16 object-contain hover:opacity-95 transition-opacity">
+                        </a>
+                    </div>
+
+                    <!-- Right: Social / Contact -->
+                    <div class="hidden md:flex md:items-center md:space-x-6">
+                        <a href="https://www.instagram.com/relojeriayjoyerianeny/" target="_blank" class="text-charcoal/70 hover:text-charcoal transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                        </a>
+                        <a href="https://www.facebook.com/p/Joyas-neny-100063893836265/" target="_blank" class="text-charcoal/70 hover:text-charcoal transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </a>
+                        <a href="https://wa.me/56900000000?text=Hola" target="_blank" class="text-charcoal/70 hover:text-charcoal transition-colors">
+                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Menú Móvil Modal Glassmorphism Centrado -->
+            <div id="mobileMenu" class="hidden fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/50 backdrop-blur-md">
+                <!-- Tarjeta de Cristal Translúcida -->
+                <div class="w-full max-w-xs bg-royal-dark/80 backdrop-blur-2xl border border-white/20 rounded-3xl p-7 shadow-2xl text-center space-y-5 text-white relative">
+                    <!-- Close button -->
+                    <button type="button" id="closeMobileMenuBtn" class="absolute top-4 right-4 p-2 text-white/70 hover:text-white rounded-full focus:outline-none" aria-label="Cerrar menú">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+
+                    <div class="pt-2 mb-2 flex flex-col items-center">
+                        <img src="img/joyas-neny-favicon-white.png?v=3.1.0" alt="Logo" class="w-9 h-9 object-contain mb-1.5 opacity-95">
+                        <span class="font-serif text-2xl font-bold tracking-wider text-white">Joyas Neny</span>
+                    </div>
+
+                    <nav class="space-y-2.5 font-sans text-sm">
+                        <a href="#nosotros" class="block py-2.5 px-4 rounded-xl text-white/85 hover:text-white hover:bg-white/10 transition-all mobile-link font-medium">Sobre Nosotros</a>
+                        <a href="#joyeria" class="block py-2.5 px-4 rounded-xl text-white/85 hover:text-white hover:bg-white/10 transition-all mobile-link font-medium">Joyería Exclusiva</a>
+                        <a href="#relojeria" class="block py-2.5 px-4 rounded-xl text-white/85 hover:text-white hover:bg-white/10 transition-all mobile-link font-medium">Relojes Festina</a>
+                        <a href="catalogo.html" class="block py-2.5 px-4 rounded-xl text-white bg-royal-blue/70 hover:bg-royal-blue/90 border border-white/20 transition-all mobile-link font-semibold">Ver Catálogo Festina</a>
+                    </nav>
+
+                    <div class="flex justify-center space-x-6 pt-4 border-t border-white/15">
+                         <a href="https://www.instagram.com/relojeriayjoyerianeny/" target="_blank" class="text-white/80 hover:text-white transition-colors" aria-label="Instagram">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                        </a>
+                        <a href="https://www.facebook.com/p/Joyas-neny-100063893836265/" target="_blank" class="text-white/80 hover:text-white transition-colors" aria-label="Facebook">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+    <!-- HERO SECTION (Wispr Flow / Editorial Minimalist - Expansive Mobile) -->
+    <section class="relative min-h-[100dvh] flex flex-col justify-center items-center bg-[#FDFBF7] overflow-hidden">
+        
+        <!-- Animated Background Container (Injected by JS) -->
+        <div id="hero-animated-bg" class="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-85"></div>
+
+        <!-- Background Decorative SVG -->
+        <div class="absolute inset-0 pointer-events-none z-10 flex items-center justify-center opacity-30">
+             <svg width="100%" height="100%" viewBox="0 0 1000 1000" preserveAspectRatio="none" class="text-royal-blue/10">
+                 <path d="M-200,800 C300,900 600,100 1200,200" fill="none" stroke="currentColor" stroke-width="1.5" />
+             </svg>
+        </div>
+
+        <!-- Contenido Central del Hero -->
+        <div class="relative z-20 text-center px-6 sm:px-8 max-w-4xl pt-28 pb-14 sm:pt-36 sm:pb-20 my-auto flex flex-col justify-center">
+            
+            <div class="anime-hero-text">
+                
+                <span class="inline-block font-sans text-[10px] sm:text-xs md:text-sm font-semibold tracking-[0.22em] text-royal-blue uppercase mb-6 sm:mb-8 bg-royal-blue/5 border border-royal-blue/15 px-4 py-1.5 rounded-full shadow-xs">
+                    Joyería & Relojería Neny • Talca
+                </span>
+                
+                <h2 class="font-serif italic font-normal text-[3.4rem] xs:text-[3.8rem] sm:text-7xl md:text-8xl lg:text-9xl text-charcoal leading-[0.98] sm:leading-[0.9] tracking-tight">
+                    <span class="block">Alianzas eternas,</span>
+                    <span class="block mt-2 sm:mt-3 text-royal-blue font-normal not-italic font-serif font-bold text-[3rem] xs:text-[3.3rem] sm:text-6xl md:text-7xl lg:text-8xl">precisión Festina.</span>
+                </h2>
+
+                <p class="mt-7 sm:mt-10 mx-auto font-sans text-base sm:text-lg md:text-xl font-normal leading-relaxed text-charcoal/85 max-w-xl px-2">
+                    Piezas exclusivas de orfebrería fina en oro 18k y la colección completa de la prestigiosa marca <strong class="text-royal-blue font-semibold">Festina</strong> en Talca.
+                </p>
+
+                <!-- Botones de Acción -->
+                <div class="flex flex-col sm:flex-row items-center justify-center mt-9 sm:mt-12 gap-3.5 sm:gap-4 w-full max-w-sm sm:max-w-none mx-auto">
+                    <a href="catalogo.html"
+                       class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 font-sans text-sm sm:text-base font-bold tracking-wide transition-all duration-300 rounded-full text-white bg-royal-blue hover:bg-royal-dark shadow-lg hover:shadow-xl hover:-translate-y-0.5">
+                        Explorar Colección Festina
+                    </a>
+                    
+                    <a href="https://wa.me/56900000000?text=Hola,%20me%20gustaría%20hacer%20una%20consulta." target="_blank"
+                       class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 font-sans text-sm sm:text-base font-bold tracking-wide transition-all duration-300 rounded-full text-charcoal/80 bg-white hover:bg-gray-50 hover:text-charcoal border border-gray-200 shadow-sm hover:-translate-y-0.5">
+                        Contáctanos
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SOBRE NOSOTROS (Estilo Dashcom UI adaptado a Neny) -->
+    <section id="nosotros" class="py-24 sm:py-32 bg-white">
+        <div class="max-w-7xl mx-auto">
+            
+            <!-- Encabezado Centrado -->
+            <div class="text-center max-w-3xl mx-auto mb-16 px-6 anime-reveal">
+                <span class="inline-block text-xs uppercase tracking-[0.2em] font-bold text-royal-blue border border-royal-blue/20 px-4 py-1.5 rounded-full mb-6">
+                    Sobre Nosotros
+                </span>
+                <h2 class="text-4xl sm:text-5xl lg:text-6xl font-serif text-royal-blue leading-[1.1] mb-6">
+                    Tradición, distinción y <br><span class="italic font-normal text-royal-blue/80">confianza en el Maule.</span>
+                </h2>
+                <p class="text-muted-gray leading-relaxed font-sans text-base sm:text-lg mb-4">
+                    En <strong class="text-charcoal font-semibold">Joyería y Relojería Neny</strong> nos dedicamos a ofrecer piezas de valor duradero y una atención cercana en la ciudad de Talca. 
+                </p>
+                <p class="text-muted-gray leading-relaxed font-sans text-base sm:text-lg">
+                    Combinamos la orfebrería de alta calidad con la representación oficial de la reconocida marca <strong>Festina</strong>, asegurando asesoramiento transparente y personalizado.
+                </p>
+            </div>
+
+            <!-- Grilla de 4 Tarjetas (Inspiración Dashcom UI) -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 px-6 max-w-6xl mx-auto anime-reveal">
+                
+                <!-- Tarjeta 1 -->
+                <div class="bg-gray-50 border border-gray-100 rounded-3xl p-6 sm:p-8 flex flex-col justify-between aspect-square hover:-translate-y-1 hover:shadow-md transition-all duration-300">
+                    <div class="flex justify-end">
+                        <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm">
+                            <svg class="w-5 h-5 text-royal-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-4xl sm:text-5xl font-serif text-royal-blue mb-2">15+</h3>
+                        <p class="text-xs sm:text-sm font-sans font-bold text-gray-500 uppercase tracking-widest">Años de Tradición</p>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 2 -->
+                <div class="bg-gray-50 border border-gray-100 rounded-3xl p-6 sm:p-8 flex flex-col justify-between aspect-square hover:-translate-y-1 hover:shadow-md transition-all duration-300">
+                    <div class="flex justify-end">
+                        <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm">
+                            <svg class="w-5 h-5 text-royal-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-4xl sm:text-5xl font-serif text-royal-blue mb-2">100%</h3>
+                        <p class="text-xs sm:text-sm font-sans font-bold text-gray-500 uppercase tracking-widest">Garantía Oficial</p>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 3 -->
+                <div class="bg-royal-dark rounded-3xl p-6 sm:p-8 flex flex-col justify-between aspect-square hover:-translate-y-1 hover:shadow-lg transition-all duration-300 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-white opacity-[0.03] pattern-diagonal-lines"></div>
+                    <div class="flex justify-end relative z-10">
+                        <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-md">
+                            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        </div>
+                    </div>
+                    <div class="relative z-10">
+                        <h3 class="text-4xl sm:text-5xl font-serif text-white mb-2">160+</h3>
+                        <p class="text-xs sm:text-sm font-sans font-bold text-blue-200 uppercase tracking-widest">Modelos Festina</p>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 4 -->
+                <div class="bg-gray-50 border border-gray-100 rounded-3xl p-6 sm:p-8 flex flex-col justify-between aspect-square hover:-translate-y-1 hover:shadow-md transition-all duration-300">
+                    <div class="flex justify-end">
+                        <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm">
+                            <svg class="w-5 h-5 text-royal-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-4xl sm:text-5xl font-serif text-royal-blue mb-2">1K+</h3>
+                        <p class="text-xs sm:text-sm font-sans font-bold text-gray-500 uppercase tracking-widest">Clientes Felices</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- JOYERÍA EXCLUSIVA (Galería Collage Circular) -->
+    <section id="joyeria" class="py-24 sm:py-32 bg-[#FDFBF7] border-t border-gray-100 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+            
+            <div class="grid lg:grid-cols-2 gap-16 lg:gap-8 items-center">
+                
+                <!-- Texto y CTA (Izquierda) -->
+                <div class="max-w-xl mx-auto lg:mx-0 text-center lg:text-left anime-reveal z-10 relative">
+                    <span class="inline-block text-xs uppercase tracking-[0.2em] font-bold text-royal-blue border border-royal-blue/20 px-4 py-1.5 rounded-full mb-6">
+                        Línea Exclusiva
+                    </span>
+                    <h2 class="text-4xl sm:text-5xl lg:text-6xl font-serif text-royal-blue mb-6 leading-[1.1]">
+                        Orfebrería & Joyas <br><span class="italic font-normal">Únicas</span>
+                    </h2>
+                    <p class="text-muted-gray text-base sm:text-lg leading-relaxed mb-10">
+                        Piezas finas de disponibilidad limitada. Cada joya cuenta con un diseño particular en oro y plata elaborados con engastes de alta precisión. Explora nuestra galería de trabajos únicos.
+                    </p>
+                    <a href="https://wa.me/56900000000?text=Hola,%20quisiera%20consultar%20por%20disponibilidad%20y%20cotizar%20joyería." target="_blank" class="inline-flex items-center justify-center px-8 py-4 bg-royal-blue text-white rounded-full font-sans text-sm font-bold uppercase tracking-widest hover:bg-royal-dark transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1">
+                        Consulta disponibilidad y cotiza
+                    </a>
+                </div>
+
+                <!-- Collage Circular (Derecha) -->
+                <div class="relative h-[360px] sm:h-[430px] lg:h-[500px] w-full flex items-center justify-center anime-reveal">
+                    
+                    <!-- Circulo 1 (Central / Grande) -->
+                    <div class="absolute z-20 rounded-full bg-white shadow-xl p-2 w-48 h-48 sm:w-64 sm:h-64 lg:w-80 lg:h-80 transform translate-x-2 -translate-y-2 sm:translate-x-4 sm:-translate-y-4 hover:scale-105 transition-transform duration-700 ease-out cursor-pointer group">
+                        <div class="w-full h-full rounded-full bg-gray-50 border border-gray-100 overflow-hidden flex flex-col items-center justify-center relative p-3">
+                            <!-- Placeholder Icon -->
+                            <svg class="w-8 h-8 sm:w-12 sm:h-12 text-gray-300 mb-1.5 transition-transform duration-500 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            <span class="text-[10px] sm:text-xs font-bold text-gray-400 uppercase tracking-widest z-10 text-center group-hover:text-royal-blue transition-colors duration-300">Anillos de Compromiso</span>
+                            <span class="text-[9px] sm:text-[10px] text-gray-400 mt-0.5 italic font-serif">Foto (3)</span>
+                        </div>
+                    </div>
+
+                    <!-- Circulo 2 (Arriba Izquierda / Mediano) -->
+                    <div class="absolute z-10 rounded-full bg-white shadow-lg p-2 w-32 h-32 sm:w-44 sm:h-44 lg:w-56 lg:h-56 transform -translate-x-18 -translate-y-24 sm:-translate-x-28 sm:-translate-y-36 lg:-translate-x-32 lg:-translate-y-40 hover:scale-105 transition-transform duration-700 ease-out cursor-pointer group">
+                        <div class="w-full h-full rounded-full bg-blue-50/50 border border-blue-100 overflow-hidden flex flex-col items-center justify-center relative p-2">
+                            <svg class="w-6 h-6 sm:w-8 sm:h-8 text-blue-200 mb-1 transition-transform duration-500 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4"/></svg>
+                            <span class="text-[9px] sm:text-[10px] font-bold text-royal-blue uppercase tracking-widest text-center px-2 group-hover:text-royal-dark transition-colors duration-300">Collares & Cadenas</span>
+                            <span class="text-[8px] sm:text-[10px] text-blue-300 mt-0.5 italic font-serif">Foto (4)</span>
+                        </div>
+                    </div>
+
+                    <!-- Circulo 3 (Abajo Derecha / Mediano) -->
+                    <div class="absolute z-10 rounded-full bg-white shadow-lg p-2 w-36 h-36 sm:w-48 sm:h-48 lg:w-60 lg:h-60 transform translate-x-16 translate-y-20 sm:translate-x-24 sm:translate-y-32 lg:translate-x-28 lg:translate-y-40 hover:scale-105 transition-transform duration-700 ease-out cursor-pointer group">
+                        <div class="w-full h-full rounded-full bg-gray-50 border border-gray-100 overflow-hidden flex flex-col items-center justify-center relative p-2">
+                            <svg class="w-6 h-6 sm:w-8 sm:h-8 text-gray-300 mb-1 transition-transform duration-500 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+                            <span class="text-[9px] sm:text-[10px] font-bold text-gray-500 uppercase tracking-widest text-center px-2 group-hover:text-royal-blue transition-colors duration-300">Aros & Pendientes</span>
+                            <span class="text-[8px] sm:text-[10px] text-gray-400 mt-0.5 italic font-serif">Foto (5)</span>
+                        </div>
+                    </div>
+
+                    <!-- Circulo 4 (Abajo Izquierda / Pequeño satelite decorativo) -->
+                    <div class="absolute z-30 rounded-full bg-white shadow-md p-1.5 w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 transform -translate-x-16 translate-y-16 sm:-translate-x-24 sm:translate-y-24 lg:-translate-x-32 lg:translate-y-32 hover:scale-110 transition-transform duration-700 ease-out cursor-pointer">
+                         <div class="w-full h-full rounded-full bg-[#FDFBF7] border border-gray-100 flex flex-col items-center justify-center">
+                             <span class="text-[8px] sm:text-[9px] font-bold text-royal-blue uppercase tracking-widest text-center px-1">Oro 18k</span>
+                         </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- COLECCIÓN FESTINA (Diseño Ambassador Minimalista - LandingFolio) -->
+    <section id="relojeria" class="py-20 sm:py-32 bg-royal-dark relative overflow-hidden flex flex-col items-center">
+        <!-- Huge Watermark Text behind watches -->
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-0 overflow-hidden">
+            <span class="text-[12rem] md:text-[22rem] font-serif font-bold text-white/[0.03] select-none tracking-tighter" style="font-family: 'Cormorant Garamond', serif;">
+                1902
+            </span>
+        </div>
+
+        <!-- Title -->
+        <div class="relative z-10 text-center mb-16 md:mb-24 px-6 max-w-4xl mx-auto">
+            <h2 class="text-4xl md:text-5xl lg:text-6xl font-serif text-white leading-[1.1]">
+                La más completa colección de <br>
+                <span class="font-sans text-2xl md:text-3xl lg:text-4xl font-light text-blue-200/90 block mt-3 tracking-wide">relojes Festina del Maule</span>
+            </h2>
+        </div>
+
+        <!-- 3 Watches Grid -->
+        <div class="relative z-10 max-w-6xl mx-auto px-6 w-full">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-8">
+                
+                <!-- Watch 1 -->
+                <div class="flex flex-col items-center text-center group">
+                    <!-- Watch Face (Simulating transparent PNG without boxes) -->
+                    <div class="w-56 h-56 rounded-full border border-gray-600 bg-gradient-to-tr from-gray-100 to-white flex items-center justify-center mb-16 shadow-sm transition-transform duration-700 group-hover:scale-105 group-hover:shadow-lg relative cursor-pointer">
+                        <!-- Glass reflection -->
+                        <div class="absolute inset-2 rounded-full border border-white/60"></div>
+                        <div class="absolute w-[2px] h-12 bg-gray-600 -top-12"></div> <!-- Strap top -->
+                        <div class="absolute w-[2px] h-12 bg-gray-600 -bottom-12"></div> <!-- Strap bottom -->
+                        <span class="text-xs font-sans font-bold text-gray-500">Chrono Bike</span>
+                    </div>
+                    <h3 class="text-sm font-sans font-bold tracking-[0.2em] text-white uppercase mb-2">Festina Chrono Bike</h3>
+                    <a href="https://wa.me/56900000000?text=Hola,%20quisiera%20cotizar%20el%20reloj%20Festina%20Chrono%20Bike." target="_blank" class="mt-5 text-xs font-bold uppercase tracking-widest text-blue-300 opacity-0 transition-opacity duration-300 group-hover:opacity-100 border-b border-blue-300 pb-0.5">
+                        Consultar
+                    </a>
+                </div>
+
+                <!-- Watch 2 -->
+                <div class="flex flex-col items-center text-center group">
+                    <!-- Watch Face -->
+                    <div class="w-56 h-56 rounded-full border border-gray-900 bg-gradient-to-tr from-gray-900 to-gray-700 flex items-center justify-center mb-16 shadow-sm transition-transform duration-700 group-hover:scale-105 group-hover:shadow-lg relative cursor-pointer">
+                         <!-- Glass reflection -->
+                        <div class="absolute inset-2 rounded-full border border-white/10"></div>
+                        <div class="absolute w-[2px] h-12 bg-gray-900 -top-12"></div>
+                        <div class="absolute w-[2px] h-12 bg-gray-900 -bottom-12"></div>
+                        <span class="text-xs font-sans font-bold text-gray-300">Ceramic</span>
+                    </div>
+                    <h3 class="text-sm font-sans font-bold tracking-[0.2em] text-white uppercase mb-2">Festina Ceramic</h3>
+                    <a href="https://wa.me/56900000000?text=Hola,%20quisiera%20cotizar%20el%20reloj%20Festina%20Ceramic." target="_blank" class="mt-5 text-xs font-bold uppercase tracking-widest text-blue-300 opacity-0 transition-opacity duration-300 group-hover:opacity-100 border-b border-blue-300 pb-0.5">
+                        Consultar
+                    </a>
+                </div>
+
+                <!-- Watch 3 -->
+                <div class="flex flex-col items-center text-center group">
+                    <!-- Watch Face -->
+                    <div class="w-56 h-56 rounded-full border border-yellow-200 bg-gradient-to-tr from-yellow-50 to-white flex items-center justify-center mb-16 shadow-sm transition-transform duration-700 group-hover:scale-105 group-hover:shadow-lg relative cursor-pointer">
+                         <!-- Glass reflection -->
+                        <div class="absolute inset-2 rounded-full border border-white/80"></div>
+                        <div class="absolute w-[2px] h-12 bg-yellow-200 -top-12"></div>
+                        <div class="absolute w-[2px] h-12 bg-yellow-200 -bottom-12"></div>
+                        <span class="text-xs font-sans font-bold text-gray-500">Boyfriend Lady</span>
+                    </div>
+                    <h3 class="text-sm font-sans font-bold tracking-[0.2em] text-white uppercase mb-2">Festina Boyfriend</h3>
+                    <a href="https://wa.me/56900000000?text=Hola,%20quisiera%20cotizar%20el%20reloj%20Festina%20Boyfriend." target="_blank" class="mt-5 text-xs font-bold uppercase tracking-widest text-blue-300 opacity-0 transition-opacity duration-300 group-hover:opacity-100 border-b border-blue-300 pb-0.5">
+                        Consultar
+                    </a>
+                </div>
+
+            </div>
+        </div>
+        
+        <!-- View All Link -->
+        <div class="relative z-10 mt-24">
+            <a href="catalogo.html" class="btn-pill-primary">
+                Ver Catálogo Completo
+            </a>
+        </div>
+    </section>
+
+    <!-- SERVICIOS -->
+    <section id="servicios" class="py-20 sm:py-28 bg-white">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+            <div class="text-center max-w-2xl mx-auto mb-16 anime-reveal">
+                <span class="badge-editorial mb-3">Atención & Especialidad</span>
+                <h2 class="text-4xl sm:text-5xl font-serif text-royal-blue">
+                    Servicios de Asesoría & Mantención
+                </h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-8 border border-border-gray bg-gray-50/50 rounded-3xl anime-reveal">
+                    <div class="w-12 h-12 bg-royal-light text-royal-blue font-bold flex items-center justify-center text-sm font-sans mb-6 rounded-2xl">
+                        01
+                    </div>
+                    <h3 class="text-xl font-serif font-bold text-royal-blue mb-3">Asesoría de Compra</h3>
+                    <p class="text-sm text-muted-gray leading-relaxed font-sans">
+                        Orientación personalizada para elegir la joya o el reloj Festina adecuado para ocasiones especiales o regalos.
+                    </p>
+                </div>
+
+                <div class="p-8 border border-border-gray bg-gray-50/50 rounded-3xl anime-reveal">
+                    <div class="w-12 h-12 bg-royal-light text-royal-blue font-bold flex items-center justify-center text-sm font-sans mb-6 rounded-2xl">
+                        02
+                    </div>
+                    <h3 class="text-xl font-serif font-bold text-royal-blue mb-3">Mantención & Ajuste</h3>
+                    <p class="text-sm text-muted-gray leading-relaxed font-sans">
+                        Ajuste de eslabones de brazaletes, cambio de baterías y revisión técnica de relojería.
+                    </p>
+                </div>
+
+                <div class="p-8 border border-border-gray bg-gray-50/50 rounded-3xl anime-reveal">
+                    <div class="w-12 h-12 bg-royal-light text-royal-blue font-bold flex items-center justify-center text-sm font-sans mb-6 rounded-2xl">
+                        03
+                    </div>
+                    <h3 class="text-xl font-serif font-bold text-royal-blue mb-3">Cotización a Medida</h3>
+                    <p class="text-sm text-muted-gray leading-relaxed font-sans">
+                        Consulta por disponibilidad de modelos específicos, tiempos de entrega y retiro directo en Talca.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIOS & EXPERIENCIAS (Inspirado en Webhound - LandingFolio) -->
+    <section id="testimonios" class="py-24 sm:py-32 bg-gray-50 border-t border-gray-200/70 overflow-hidden relative">
+        <!-- Subtle background decorative glow -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-royal-blue/5 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+            
+            <!-- Encabezado Centrado -->
+            <div class="text-center max-w-3xl mx-auto mb-16 sm:mb-20 anime-reveal">
+                <span class="inline-block text-xs uppercase tracking-[0.2em] font-bold text-royal-blue border border-royal-blue/20 bg-white px-4 py-1.5 rounded-full mb-6 shadow-xs">
+                    Experiencias de Clientes
+                </span>
+                <h2 class="text-4xl sm:text-5xl lg:text-6xl font-serif text-royal-blue leading-[1.1] mb-6">
+                    Momentos únicos, <br><span class="italic font-normal text-royal-blue/80">respaldados por confianza.</span>
+                </h2>
+                <p class="text-muted-gray text-base sm:text-lg leading-relaxed">
+                    La satisfacción de quienes eligen sus alianzas de matrimonio, piezas de alta joyería y relojería oficial Festina en Talca.
+                </p>
+            </div>
+
+            <!-- Grilla de 3 Tarjetas (Estilo Webhound) -->
+            <div class="grid md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
+                
+                <!-- Testimonio 1 -->
+                <div class="bg-white border border-gray-200/80 rounded-3xl p-7 sm:p-8 flex flex-col justify-between shadow-xs hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 group anime-reveal">
+                    <div>
+                        <!-- Estrellas y Comillas -->
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="flex items-center space-x-1 text-amber-400 text-sm">
+                                ★★★★★
+                            </div>
+                            <span class="text-xs font-sans font-medium text-gray-400">Hace 2 semanas</span>
+                        </div>
+
+                        <!-- Cita -->
+                        <p class="text-gray-700 font-sans text-sm sm:text-base leading-relaxed mb-8">
+                            “Mandamos a hacer nuestras <strong class="text-charcoal font-semibold">argollas de matrimonio en oro 18k</strong>. La asesoría de medidas y el acabado fueron impecables. Da mucha tranquilidad comprar en un taller con tanta tradición en Talca.”
+                        </p>
+                    </div>
+
+                    <!-- Perfil del Cliente -->
+                    <div class="pt-6 border-t border-gray-100 flex items-center gap-3.5">
+                        <div class="w-11 h-11 rounded-full bg-gradient-to-br from-royal-blue to-royal-dark text-white flex items-center justify-center font-serif text-base font-bold shadow-sm flex-shrink-0">
+                            CM
+                        </div>
+                        <div>
+                            <h3 class="font-sans text-sm font-bold text-charcoal">Camila & Matías</h3>
+                            <div class="flex items-center gap-1.5 text-xs text-muted-gray">
+                                <span class="text-royal-blue font-semibold">Argollas de Boda</span> • Talca
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonio 2 -->
+                <div class="bg-white border border-gray-200/80 rounded-3xl p-7 sm:p-8 flex flex-col justify-between shadow-xs hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 group anime-reveal">
+                    <div>
+                        <!-- Estrellas y Comillas -->
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="flex items-center space-x-1 text-amber-400 text-sm">
+                                ★★★★★
+                            </div>
+                            <span class="text-xs font-sans font-medium text-gray-400">Hace 1 mes</span>
+                        </div>
+
+                        <!-- Cita -->
+                        <p class="text-gray-700 font-sans text-sm sm:text-base leading-relaxed mb-8">
+                            “Buscaba un <strong class="text-charcoal font-semibold">Festina Chrono Bike</strong> con garantía oficial. La atención por WhatsApp fue inmediata, resolvieron todas mis dudas de stock y el retiro en tienda fue rapidísimo. 100% recomendados.”
+                        </p>
+                    </div>
+
+                    <!-- Perfil del Cliente -->
+                    <div class="pt-6 border-t border-gray-100 flex items-center gap-3.5">
+                        <div class="w-11 h-11 rounded-full bg-gradient-to-br from-royal-dark to-slate-800 text-white flex items-center justify-center font-serif text-base font-bold shadow-sm flex-shrink-0">
+                            RS
+                        </div>
+                        <div>
+                            <h3 class="font-sans text-sm font-bold text-charcoal">Rodrigo Silva</h3>
+                            <div class="flex items-center gap-1.5 text-xs text-muted-gray">
+                                <span class="text-royal-blue font-semibold">Festina Oficial</span> • Maule
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonio 3 -->
+                <div class="bg-white border border-gray-200/80 rounded-3xl p-7 sm:p-8 flex flex-col justify-between shadow-xs hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 group anime-reveal">
+                    <div>
+                        <!-- Estrellas y Comillas -->
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="flex items-center space-x-1 text-amber-400 text-sm">
+                                ★★★★★
+                            </div>
+                            <span class="text-xs font-sans font-medium text-gray-400">Hace 3 semanas</span>
+                        </div>
+
+                        <!-- Cita -->
+                        <p class="text-gray-700 font-sans text-sm sm:text-base leading-relaxed mb-8">
+                            “Excelente experiencia. Compré un <strong class="text-charcoal font-semibold">solitario de compromiso</strong> y me orientaron con mucha paciencia sobre las opciones y materiales. La presentación y el detalle de la pieza superaron mis expectativas.”
+                        </p>
+                    </div>
+
+                    <!-- Perfil del Cliente -->
+                    <div class="pt-6 border-t border-gray-100 flex items-center gap-3.5">
+                        <div class="w-11 h-11 rounded-full bg-gradient-to-br from-royal-blue to-blue-600 text-white flex items-center justify-center font-serif text-base font-bold shadow-sm flex-shrink-0">
+                            VM
+                        </div>
+                        <div>
+                            <h3 class="font-sans text-sm font-bold text-charcoal">Valentina Morales</h3>
+                            <div class="flex items-center gap-1.5 text-xs text-muted-gray">
+                                <span class="text-royal-blue font-semibold">Anillo Solitario</span> • Talca
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CONTACTO DIRECTO -->
+    <section id="contacto" class="py-20 sm:py-28 bg-white border-t border-border-gray">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-5 anime-reveal">
+                    <span class="badge-editorial mb-4">Contacto Directo</span>
+                    <h2 class="text-4xl sm:text-5xl font-serif text-royal-blue mb-5">
+                        Estamos en Talca
+                    </h2>
+                    <p class="text-muted-gray text-base leading-relaxed mb-8">
+                        Para consultas sobre joyas específicas o cotizaciones de modelos Festina, envíanos un mensaje y te responderemos a la brevedad.
+                    </p>
+
+                    <div class="space-y-4 text-sm font-sans text-gray-700">
+                        <div class="p-4 bg-gray-50 border border-gray-200 rounded-2xl">
+                            <span class="font-bold text-royal-blue block text-xs uppercase tracking-wider mb-1">Ubicación</span>
+                            Talca, Región del Maule, Chile
+                        </div>
+                        <div class="p-4 bg-gray-50 border border-gray-200 rounded-2xl">
+                            <span class="font-bold text-royal-blue block text-xs uppercase tracking-wider mb-1">WhatsApp de Atención</span>
+                            +56 9 0000 0000
+                        </div>
+                        <div class="p-4 bg-gray-50 border border-gray-200 rounded-2xl">
+                            <span class="font-bold text-royal-blue block text-xs uppercase tracking-wider mb-1">Representación Oficial</span>
+                            Festina Watches Chile
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 anime-reveal">
+                    <div class="bg-gray-50 border border-border-gray p-8 sm:p-10 rounded-3xl shadow-sm">
+                        <h3 class="text-2xl font-serif text-royal-blue mb-6 font-bold">Enviar Consulta</h3>
+                        <form id="contactForm" class="space-y-5">
+                            <div>
+                                <label class="block text-xs uppercase font-bold tracking-wider text-gray-600 mb-2">Nombre</label>
+                                <input type="text" id="formName" required placeholder="Tu nombre y apellido" 
+                                       class="w-full px-4 py-3 bg-white border border-gray-300 rounded-xl text-sm focus:border-royal-blue focus:outline-none transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-xs uppercase font-bold tracking-wider text-gray-600 mb-2">Teléfono o WhatsApp</label>
+                                <input type="tel" id="formPhone" required placeholder="+56 9 1234 5678" 
+                                       class="w-full px-4 py-3 bg-white border border-gray-300 rounded-xl text-sm focus:border-royal-blue focus:outline-none transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-xs uppercase font-bold tracking-wider text-gray-600 mb-2">Mensaje o Modelo de Interés</label>
+                                <textarea id="formMessage" rows="3" required placeholder="Hola, quisiera consultar por..." 
+                                          class="w-full px-4 py-3 bg-white border border-gray-300 rounded-xl text-sm focus:border-royal-blue focus:outline-none transition-colors"></textarea>
+                            </div>
+                            <button type="submit" class="w-full btn-pill-blue py-3.5 text-base flex items-center justify-center gap-2.5 shadow-md hover:shadow-lg">
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                                Enviar Consulta vía WhatsApp
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-royal-dark text-white py-20 text-sm font-sans border-t border-white/10 relative overflow-hidden">
+        <!-- Subtle Background Glow -->
+        <div class="absolute inset-0 bg-gradient-to-t from-royal-blue/10 to-transparent pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex flex-col items-center relative z-10">
+            <!-- Icon/Logo -->
+            <div class="mb-10 transform hover:scale-105 transition-transform duration-300 cursor-pointer flex flex-col items-center">
+                <img src="img/joyas-neny-logo-white.png?v=3.1.0" alt="Joyas Neny" class="h-16 md:h-20 opacity-90 hover:opacity-100 transition-opacity object-contain">
+            </div>
+            
+            <!-- Horizontal Links -->
+            <div class="flex flex-wrap justify-center gap-x-12 gap-y-4 mb-12 text-center">
+                <a href="#nosotros" class="font-bold tracking-wide hover:text-blue-300 transition-colors">Nosotros</a>
+                <a href="#joyeria" class="font-bold tracking-wide hover:text-blue-300 transition-colors">Joyería Exclusiva</a>
+                <a href="#relojeria" class="font-bold tracking-wide hover:text-blue-300 transition-colors">Relojería Festina</a>
+                <a href="catalogo.html" class="font-bold tracking-wide hover:text-blue-300 transition-colors">Catálogo (160)</a>
+                <a href="https://wa.me/56900000000" target="_blank" class="font-bold tracking-wide hover:text-blue-300 transition-colors">Contacto</a>
+            </div>
+
+            <!-- Copyright -->
+            <div class="text-white/50 text-xs">
+                Copyright &copy; <span id="year"></span> Joyería y Relojería Neny. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/56900000000?text=Hola,%20me%20gustar%C3%ADa%20hacer%20una%20consulta." 
+       target="_blank" 
+       class="whatsapp-clean-btn"
+       aria-label="WhatsApp">
+        <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        <span class="hidden sm:inline">Cotizar por WhatsApp</span>
+    </a>
+
+    <!-- Anime.js & Main Script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="js/main.js?v=3.6.0"></script>
+</body>
+</html>
