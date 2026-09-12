@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo Oficial Festina (+160 Modelos) | Joyería y Relojería Neny</title>
-    <meta name="description" content="Catálogo completo de relojería Festina en Talca. Cotizaciones inmediatas vía WhatsApp con stock garantizado.">
-    <!-- Tailwind CSS CDN -->
+    <title>Catálogo Oficial Festina (+160 Modelos) | Joyería y Relojería Neny • Talca</title>
+    <meta name="description"
+        content="Catálogo completo de relojería Festina en Talca, Chile. Joyería y Relojería Neny, concesionario oficial. Cotizaciones inmediatas vía WhatsApp con stock garantizado.">
+    <!-- Tailwind CSS (Utilidades de maquetado) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -34,133 +36,491 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css?v=3.1.0">
 </head>
-<body class="bg-gray-50 text-charcoal min-h-screen flex flex-col selection:bg-royal-blue selection:text-white">
 
-    <!-- Header / Barra de Navegación -->
-    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-border-gray shadow-xs">
-        <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-3 flex flex-col sm:flex-row justify-between items-center gap-4">
-            
-            <div class="flex items-center justify-between w-full sm:w-auto">
-                <a href="index.html" class="flex items-center gap-3">
-                    <img src="img/joyas-neny-logo.png?v=3.1.0" alt="Joyas Neny" class="h-10 sm:h-12 object-contain">
-                    <span class="w-px h-5 bg-gray-300"></span>
-                    <span class="text-xs uppercase tracking-wider text-gray-500 font-sans">Catálogo Festina</span>
-                </a>
-                <a href="index.html" class="text-xs text-royal-blue font-semibold hover:underline sm:hidden">
-                    &larr; Volver
-                </a>
-            </div>
+<body class="bg-[#FDFBF7] text-charcoal font-sans antialiased selection:bg-royal-blue selection:text-white">
+    <h1 class="sr-only">Catálogo Oficial de Relojes Festina - Joyas Neny</h1>
 
-            <!-- Buscador con estilo Pill -->
-            <div class="flex items-center gap-4 w-full sm:w-auto">
-                <div class="relative w-full sm:w-80">
-                    <input type="text" id="searchInput" placeholder="Buscar por modelo o colección..." 
-                           class="w-full pl-10 pr-9 py-2.5 bg-gray-50 border border-gray-300 rounded-full text-xs sm:text-sm font-sans text-charcoal focus:bg-white focus:border-royal-blue focus:outline-none transition-colors">
-                    <svg class="w-4 h-4 text-gray-400 absolute left-3.5 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-                    <button id="clearSearchBtn" class="hidden absolute right-3.5 top-2 text-gray-400 hover:text-gray-600 text-base font-bold" aria-label="Limpiar búsqueda">&times;</button>
+    <!-- Header Flotante Superior Unificado con index.html -->
+    <header
+        class="w-full bg-white/95 backdrop-blur-md border-b border-border-gray/70 sticky top-0 z-40 py-5 sm:py-6 shadow-xs transition-all">
+        <div class="px-6 mx-auto sm:px-8 lg:px-12 max-w-7xl">
+            <div class="flex items-center justify-between relative">
+
+                <!-- Left: Links -->
+                <div class="hidden md:flex md:items-center md:space-x-8">
+                    <a href="index.html#nosotros"
+                        class="font-sans text-sm font-semibold transition-all duration-200 text-charcoal/70 hover:text-charcoal flex items-center gap-1">
+                        Nosotros
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
+                    </a>
+                    <a href="index.html#joyeria"
+                        class="font-sans text-sm font-semibold transition-all duration-200 text-charcoal/70 hover:text-charcoal">Joyería</a>
+                    <a href="index.html#relojeria"
+                        class="font-sans text-sm font-semibold transition-all duration-200 text-charcoal/70 hover:text-charcoal">Relojes</a>
+                    <a href="catalogo.html"
+                        class="font-sans text-sm font-semibold transition-all duration-300 bg-royal-blue text-white px-5 py-2.5 rounded-full hover:bg-royal-dark shadow-sm hover:shadow-md transform hover:-translate-y-0.5">
+                        Catálogo
+                    </a>
                 </div>
-                <a href="index.html" class="hidden sm:inline-block text-xs uppercase tracking-wider text-gray-600 font-semibold hover:text-royal-blue whitespace-nowrap">
-                    &larr; Volver al Inicio
-                </a>
+
+                <!-- Botón Hamburguesa Móvil -->
+                <div class="md:hidden flex-shrink-0">
+                    <button type="button" id="mobileMenuBtn"
+                        class="p-2 -m-2 transition-all duration-200 rounded-full text-charcoal hover:bg-black/5 focus:outline-none"
+                        aria-label="Abrir menú">
+                        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Center: Logotipo -->
+                <div class="flex flex-shrink-0 absolute left-1/2 -translate-x-1/2">
+                    <a href="index.html" class="flex items-center">
+                        <img src="img/joyas-neny-logo.png?v=3.1.0" alt="Joyas Neny"
+                            class="h-14 md:h-16 object-contain hover:opacity-95 transition-opacity">
+                    </a>
+                </div>
+
+                <!-- Right: Social / Contact -->
+                <div class="hidden md:flex md:items-center md:space-x-6">
+                    <a href="https://www.instagram.com/relojeriayjoyerianeny/" target="_blank"
+                        class="text-charcoal/70 hover:text-charcoal transition-colors" aria-label="Instagram">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+                        </svg>
+                    </a>
+                    <a href="https://www.facebook.com/p/Joyas-neny-100063893836265/" target="_blank"
+                        class="text-charcoal/70 hover:text-charcoal transition-colors" aria-label="Facebook">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                        </svg>
+                    </a>
+                    <a href="https://wa.me/56996234090?text=Hola" target="_blank"
+                        class="text-charcoal/70 hover:text-charcoal transition-colors" aria-label="WhatsApp">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                        </svg>
+                    </a>
+                </div>
             </div>
+        </div>
 
         </div>
     </header>
 
     <!-- Main Content -->
-    <main class="flex-grow max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-10 sm:py-14 w-full">
-        
-        <!-- Banner de Encabezado -->
-        <div class="mb-10 anime-reveal">
-            <span class="badge-editorial mb-3">Concesionario Oficial Festina</span>
-            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-                <div>
-                    <h1 class="text-4xl sm:text-5xl font-serif text-royal-blue font-semibold">
-                        Catálogo de Relojes Festina
-                    </h1>
-                    <p class="text-muted-gray text-sm sm:text-base font-sans mt-2 max-w-2xl">
-                        Selecciona un modelo y presiona "Cotizar por WhatsApp" para consultar disponibilidad, precio y entrega en Talca con el mensaje pre-cargado.
+    <main class="flex-grow w-full relative">
+
+        <!-- Hero/Header del Catálogo con fondo premium -->
+        <div class="bg-[#FDFBF7] relative overflow-hidden pt-28 pb-16 lg:pt-36 lg:pb-24 border-b border-gray-100 mb-10">
+            <!-- Decorative Glow -->
+            <div
+                class="absolute top-0 right-0 w-[500px] h-[500px] bg-royal-blue/5 rounded-full blur-3xl pointer-events-none transform translate-x-1/3 -translate-y-1/3">
+            </div>
+
+            <div
+                class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10 flex flex-col lg:flex-row lg:items-end justify-between gap-10">
+
+                <div class="max-w-2xl anime-reveal text-center lg:text-left mx-auto lg:mx-0">
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2 mb-6">
+                        <span
+                            class="inline-block text-xs uppercase tracking-[0.2em] font-bold text-royal-blue border border-royal-blue/20 bg-white px-4 py-1.5 rounded-full shadow-xs">
+                            Concesionario Oficial Festina
+                        </span>
+                        <span
+                            class="inline-block text-xs uppercase tracking-[0.15em] font-bold text-amber-700 bg-amber-50 border border-amber-200/60 px-3.5 py-1.5 rounded-full shadow-xs">
+                            ✨ 14 Años Acompañando Momentos
+                        </span>
+                    </div>
+                    <h2 class="text-4xl sm:text-5xl lg:text-6xl font-serif text-royal-blue leading-[1.1] mb-5">
+                        Catálogo de Relojes <span class="italic font-normal">Festina</span>
+                    </h2>
+                    <p class="text-muted-gray text-base sm:text-lg font-sans leading-relaxed">
+                        Explora nuestra colección oficial. Con 14 años de dedicación, confianza y cercanía in Talca, te ayudamos a encontrar ese detalle especial para regalar o para ti. Selecciona tu modelo favorito y presiona <strong
+                            class="text-charcoal font-semibold">"Cotizar este modelo"</strong> para recibir asesoría personalizada y disponibilidad inmediata.
                     </p>
                 </div>
-                <div class="text-xs text-gray-600 font-sans border border-gray-200 bg-white px-4 py-2 rounded-full self-start sm:self-auto shadow-xs font-semibold">
-                    Mostrando <span id="resultsCount" class="font-bold text-royal-blue">0</span> modelos disponibles
+
+                <!-- Buscador Integrado en Tarjeta Glass -->
+                <div class="w-full lg:w-[400px] flex-shrink-0 anime-reveal mx-auto lg:mx-0">
+                    <div
+                        class="bg-white/80 backdrop-blur-md p-5 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-white/50 flex flex-col gap-4 relative overflow-hidden">
+                        <!-- Subtle inner glow -->
+                        <div class="absolute -top-10 -right-10 w-32 h-32 bg-royal-blue/5 rounded-full blur-2xl"></div>
+
+                        <div class="relative w-full z-10">
+                            <input type="text" id="searchInput" placeholder="Buscar por modelo, colección..."
+                                class="w-full pl-12 pr-10 py-3.5 bg-white border border-gray-200 rounded-2xl text-sm font-sans text-charcoal shadow-sm focus:border-royal-blue focus:ring-2 focus:ring-royal-blue/10 focus:outline-none transition-all">
+                            <svg class="w-5 h-5 text-gray-400 absolute left-4 top-3.5" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                            <button id="clearSearchBtn"
+                                class="hidden absolute right-4 top-3.5 text-gray-400 hover:text-gray-600 text-lg font-bold"
+                                aria-label="Limpiar búsqueda">&times;</button>
+                        </div>
+                        <div
+                            class="text-xs text-gray-500 font-sans font-medium text-center z-10 flex items-center justify-center gap-2">
+                            <span
+                                class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)] animate-pulse"></span>
+                            Mostrando <span id="resultsCount" class="font-bold text-royal-blue text-sm px-1">0</span>
+                            modelos Festina
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </div>
 
-        <!-- Filtros por Colección (Horizontal Scrollable en móvil estilo Pill) -->
-        <div class="flex items-center gap-2.5 overflow-x-auto no-scrollbar py-2 mb-10 anime-reveal" id="categoryFilters">
-            <button class="filter-btn shrink-0 px-5 py-2.5 text-xs font-bold uppercase tracking-wider bg-royal-blue text-white rounded-full transition-all shadow-sm" data-category="Todos">
-                Todos (+160)
-            </button>
-            <button class="filter-btn shrink-0 px-5 py-2.5 text-xs font-bold uppercase tracking-wider bg-white text-gray-700 border border-gray-300 hover:border-royal-blue hover:text-royal-blue rounded-full transition-all" data-category="Hombre">
-                Hombre
-            </button>
-            <button class="filter-btn shrink-0 px-5 py-2.5 text-xs font-bold uppercase tracking-wider bg-white text-gray-700 border border-gray-300 hover:border-royal-blue hover:text-royal-blue rounded-full transition-all" data-category="Mujer">
-                Mujer
-            </button>
-            <button class="filter-btn shrink-0 px-5 py-2.5 text-xs font-bold uppercase tracking-wider bg-white text-gray-700 border border-gray-300 hover:border-royal-blue hover:text-royal-blue rounded-full transition-all" data-category="Chronograph">
-                Chronograph
-            </button>
-            <button class="filter-btn shrink-0 px-5 py-2.5 text-xs font-bold uppercase tracking-wider bg-white text-gray-700 border border-gray-300 hover:border-royal-blue hover:text-royal-blue rounded-full transition-all" data-category="Ceramic">
-                Ceramic
-            </button>
-            <button class="filter-btn shrink-0 px-5 py-2.5 text-xs font-bold uppercase tracking-wider bg-white text-gray-700 border border-gray-300 hover:border-royal-blue hover:text-royal-blue rounded-full transition-all" data-category="Titanium">
-                Titanium
-            </button>
-            <button class="filter-btn shrink-0 px-5 py-2.5 text-xs font-bold uppercase tracking-wider bg-white text-gray-700 border border-gray-300 hover:border-royal-blue hover:text-royal-blue rounded-full transition-all" data-category="Automatic">
-                Automatic
-            </button>
-        </div>
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pb-14 sm:pb-20">
 
-        <!-- Grid de Relojes -->
-        <div id="catalogGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
-            <!-- Renderizado dinámicamente con JavaScript -->
-        </div>
+            <!-- Aviso: Catálogo en Construcción -->
+            <div class="mb-8 p-4 sm:px-5 bg-gray-50/80 border border-gray-200/80 rounded-2xl flex items-center gap-3 sm:gap-4 text-xs sm:text-sm font-sans text-muted-gray anime-reveal">
+                <div class="w-8 h-8 rounded-full bg-white border border-gray-200 text-royal-blue flex items-center justify-center flex-shrink-0 shadow-2xs">
+                    <svg class="w-4 h-4 text-royal-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
+                <div class="leading-relaxed">
+                    <span class="font-semibold text-charcoal">Catálogo en construcción:</span> Estamos incorporando nuevos modelos progresivamente. ¡Mantente atento a las próximas actualizaciones que iremos sumando!
+                </div>
+            </div>
 
-        <!-- Estado Vacío (Empty State) -->
-        <div id="emptyState" class="hidden text-center py-20 bg-white border border-border-gray rounded-3xl p-8">
-            <svg class="w-12 h-12 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            <h3 class="font-serif text-2xl text-royal-blue mb-2 font-bold">No encontramos coincidencias</h3>
-            <p class="text-muted-gray text-sm mb-6 max-w-md mx-auto">
-                No hay relojes que coincidan con tu criterio de búsqueda. Intenta con otro término o selecciona "Todos".
-            </p>
-            <button id="resetFiltersBtn" class="btn-pill-blue text-xs">
-                Restablecer Filtros
-            </button>
+            <!-- Barra de Filtros y Ordenamiento -->
+            <div class="mb-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 p-3.5 sm:p-4 bg-white/80 backdrop-blur-md rounded-2xl border border-gray-200/80 shadow-xs anime-reveal">
+                <!-- Filtros por Género / Colección -->
+                <div class="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0" id="genderFilterGroup">
+                    <span class="text-xs font-sans font-semibold text-muted-gray mr-1 hidden md:inline">Filtrar:</span>
+                    <button type="button" data-gender="all" id="filterAllBtn" class="gender-btn px-3.5 py-2 rounded-xl text-xs font-sans font-bold transition-all duration-200 bg-royal-blue text-white shadow-2xs">
+                        Todos <span class="opacity-80 font-normal ml-0.5 text-[11px]">(89)</span>
+                    </button>
+                    <button type="button" data-gender="Hombre" id="filterHombreBtn" class="gender-btn px-3.5 py-2 rounded-xl text-xs font-sans font-semibold transition-all duration-200 text-charcoal bg-gray-50 hover:bg-gray-100 hover:text-royal-blue border border-gray-200/60">
+                        Hombre <span class="text-gray-400 font-normal ml-0.5 text-[11px]">(60)</span>
+                    </button>
+                    <button type="button" data-gender="Mujer" id="filterMujerBtn" class="gender-btn px-3.5 py-2 rounded-xl text-xs font-sans font-semibold transition-all duration-200 text-charcoal bg-gray-50 hover:bg-gray-100 hover:text-royal-blue border border-gray-200/60">
+                        Mujer <span class="text-gray-400 font-normal ml-0.5 text-[11px]">(29)</span>
+                    </button>
+                </div>
+
+                <!-- Lista de Ordenar Por -->
+                <div class="flex items-center gap-2.5 sm:justify-end">
+                    <label for="sortSelect" class="text-xs font-sans font-semibold text-muted-gray whitespace-nowrap flex items-center gap-1.5">
+                        <svg class="w-4 h-4 text-royal-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12" />
+                        </svg>
+                        <span>Ordenar por:</span>
+                    </label>
+                    <div class="relative w-full sm:w-auto">
+                        <select id="sortSelect" class="w-full sm:w-auto pl-3.5 pr-9 py-2 bg-white border border-gray-200 rounded-xl text-xs font-sans font-semibold text-charcoal shadow-2xs hover:border-royal-blue/50 focus:border-royal-blue focus:ring-2 focus:ring-royal-blue/10 focus:outline-none transition-all cursor-pointer appearance-none">
+                            <option value="default">Predeterminado (Colección)</option>
+                            <option value="hombre">Hombre</option>
+                            <option value="mujer">Mujer</option>
+                            <option value="price-desc">Precio (Mayor a Menor)</option>
+                            <option value="price-asc">Precio (Menor a Mayor)</option>
+                            <option value="alpha-asc">Orden Alfabético (A - Z)</option>
+                            <option value="alpha-desc">Orden Alfabético (Z - A)</option>
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2.5 text-gray-400">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grid de Relojes -->
+            <div id="catalogGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
+                <!-- Renderizado dinámicamente con JavaScript -->
+            </div>
+
+            <!-- Estado Vacío (Empty State) -->
+            <div id="emptyState"
+                class="hidden text-center py-20 bg-white border border-border-gray rounded-3xl p-8 shadow-xs">
+                <svg class="w-12 h-12 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                        d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <h3 class="font-serif text-2xl text-royal-blue mb-2 font-bold">No encontramos coincidencias</h3>
+                <p class="text-muted-gray text-sm mb-6 max-w-md mx-auto leading-relaxed">
+                    No hay modelos que coincidan con tu criterio de búsqueda. Intenta con otro término o selecciona
+                    "Todos".
+                </p>
+                <button id="resetFiltersBtn" class="btn-pill-blue text-xs">
+                    Restablecer Filtros
+                </button>
+            </div>
+
+            <!-- Controles de Paginación / Slides de Catálogo (30 modelos por pantalla) -->
+            <div id="paginationContainer" class="mt-12 flex flex-col sm:flex-row items-center justify-between gap-5 pt-8 border-t border-gray-200/80">
+                <!-- Info de página actual y total -->
+                <div class="text-xs sm:text-sm font-sans text-muted-gray text-center sm:text-left">
+                    Mostrando <span id="pageRangeStart" class="font-bold text-royal-blue">1</span> - <span id="pageRangeEnd" class="font-bold text-royal-blue">30</span> de <span id="totalItemsCount" class="font-bold text-royal-blue">89</span> modelos Festina
+                </div>
+
+                <!-- Botones de Navegación Slide -->
+                <div class="flex items-center gap-2">
+                    <!-- Botón Anterior -->
+                    <button id="prevPageBtn" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-sans font-semibold border border-gray-200 bg-white hover:bg-gray-50 text-charcoal disabled:opacity-30 disabled:pointer-events-none transition-all flex items-center gap-1.5 shadow-2xs">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                        <span>Anterior</span>
+                    </button>
+
+                    <!-- Botones Numéricos de Página -->
+                    <div id="pageNumbersContainer" class="flex items-center gap-1">
+                        <!-- Generados dinámicamente con JS (Página 1, 2, 3...) -->
+                    </div>
+
+                    <!-- Botón Siguiente -->
+                    <button id="nextPageBtn" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-sans font-semibold border border-gray-200 bg-white hover:bg-gray-50 text-charcoal disabled:opacity-30 disabled:pointer-events-none transition-all flex items-center gap-1.5 shadow-2xs">
+                        <span>Siguiente</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    </button>
+                </div>
+            </div>
         </div>
 
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-royal-deep text-gray-300 py-12 text-xs font-sans mt-auto border-t border-white/10">
-        <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
-            <div>
-                <span class="font-serif text-xl font-bold tracking-widest text-white uppercase block mb-1">Neny</span>
-                <p class="text-gray-400 text-xs">Concesionario Oficial Festina • Talca, Chile.</p>
+    <!-- Modal de Producto -->
+    <div id="productModal" class="fixed inset-0 z-50 hidden flex items-center justify-center px-4 py-6 sm:px-6">
+        <!-- Backdrop -->
+        <div id="modalBackdrop" class="absolute inset-0 bg-gray-900/60 backdrop-blur-sm opacity-0 cursor-pointer"></div>
+
+        <!-- Modal Content -->
+        <div id="modalContent"
+            class="relative w-full max-w-5xl bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row transform scale-95 opacity-0 max-h-[90vh] md:max-h-full">
+
+            <!-- Close button -->
+            <button id="closeModalBtn"
+                class="absolute top-4 right-4 z-20 w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 text-gray-500 hover:text-gray-800 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+
+            <!-- Modal Image Side -->
+            <div
+                class="w-full md:w-1/2 bg-[#FDFBF7] p-8 sm:p-12 flex items-center justify-center relative overflow-hidden flex-shrink-0 min-h-[300px]">
+                <div
+                    class="absolute top-0 right-0 w-64 h-64 bg-royal-blue/5 rounded-full blur-3xl pointer-events-none transform translate-x-1/2 -translate-y-1/2">
+                </div>
+                <img id="modalImage" src="" alt="Reloj"
+                    class="relative z-10 w-full h-full object-contain max-h-[400px]">
             </div>
-            <div class="flex items-center gap-6 text-xs">
-                <a href="index.html" class="hover:text-white transition-colors">Inicio</a>
-                <a href="index.html#joyeria" class="hover:text-white transition-colors">Joyería</a>
-                <a href="index.html#contacto" class="hover:text-white transition-colors">Contacto</a>
+
+            <!-- Modal Info Side -->
+            <div class="w-full md:w-1/2 p-8 sm:p-12 flex flex-col justify-center overflow-y-auto">
+                <div class="flex items-center gap-3 mb-4">
+                    <span
+                        class="text-[10px] uppercase font-bold tracking-widest text-royal-blue bg-royal-light/50 border border-royal-blue/10 px-3 py-1 rounded-full">Festina
+                        Oficial</span>
+                    <span id="modalPhotoNum"
+                        class="text-[11px] font-sans font-bold text-gray-400 uppercase tracking-widest"></span>
+                </div>
+
+                <h3 id="modalName" class="font-serif text-3xl sm:text-4xl font-bold text-royal-blue mb-2 leading-tight">
+                </h3>
+                <div id="modalPrice" class="text-2xl sm:text-3xl font-bold text-charcoal font-sans mb-4 tracking-tight"></div>
+
+                <div class="relative mb-6">
+                    <p id="modalDescription"
+                        class="text-gray-500 font-sans leading-relaxed text-sm sm:text-base line-clamp-3 md:line-clamp-none transition-all duration-300">
+                    </p>
+                    <button id="readMoreBtn"
+                        class="text-xs text-royal-blue font-bold uppercase tracking-widest mt-2 hover:text-royal-dark transition-colors md:hidden">
+                        Leer más
+                    </button>
+                </div>
+
+                <div id="modalSpecs" class="flex flex-wrap gap-2 mb-10">
+                    <!-- Specs will be injected here -->
+                </div>
+
+                <div class="mt-auto">
+                    <p class="text-xs text-gray-400 font-sans mb-3 uppercase tracking-wider font-semibold">¿Te interesa
+                        este modelo?</p>
+                    <a id="modalWhatsappBtn" href="#" target="_blank"
+                        class="w-full flex items-center justify-center gap-2 px-6 py-4 font-sans text-sm font-bold tracking-widest transition-all duration-300 rounded-2xl text-white bg-royal-blue hover:bg-royal-dark shadow-md hover:shadow-lg hover:-translate-y-0.5 uppercase">
+                        <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                            <path
+                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                        </svg>
+                        Cotizar Modelo
+                    </a>
+                </div>
             </div>
-            <div class="text-xs text-gray-400">
-                &copy; <span id="year"></span> Joyería y Relojería Neny.
+        </div>
+    </div>
+
+    <!-- Footer Unificado 1:1 con index.html -->
+    <footer
+        class="bg-royal-dark text-white py-20 text-sm font-sans border-t border-white/10 relative overflow-hidden mt-auto">
+        <!-- Subtle Background Glow -->
+        <div class="absolute inset-0 bg-gradient-to-t from-royal-blue/10 to-transparent pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex flex-col items-center relative z-10">
+            <!-- Icon/Logo -->
+            <div
+                class="mb-10 transform hover:scale-105 transition-transform duration-300 cursor-pointer flex flex-col items-center">
+                <a href="index.html">
+                    <img src="img/joyas-neny-logo-white.png?v=3.1.0" alt="Joyas Neny"
+                        class="h-16 md:h-20 opacity-90 hover:opacity-100 transition-opacity object-contain">
+                </a>
+            </div>
+
+            <!-- Horizontal Links -->
+            <div class="flex flex-wrap justify-center gap-x-12 gap-y-4 mb-12 text-center">
+                <a href="index.html#nosotros"
+                    class="font-bold tracking-wide hover:text-blue-300 transition-colors">Nosotros</a>
+                <a href="index.html#joyeria"
+                    class="font-bold tracking-wide hover:text-blue-300 transition-colors">Joyería Exclusiva</a>
+                <a href="index.html#relojeria"
+                    class="font-bold tracking-wide hover:text-blue-300 transition-colors">Relojería Festina</a>
+                <a href="catalogo.html" class="font-bold tracking-wide text-blue-300 transition-colors">Catálogo
+                    (89)</a>
+                <a href="https://wa.me/56996234090" target="_blank"
+                    class="font-bold tracking-wide hover:text-blue-300 transition-colors">Contacto</a>
+            </div>
+
+            <!-- Lema de Marca -->
+            <p class="text-white/75 text-xs sm:text-sm italic font-serif text-center max-w-xl mb-6 tracking-wide">
+                “Detalles que acompañan momentos y momentos que se transforman en recuerdos para toda la vida.”
+            </p>
+
+            <!-- Copyright -->
+            <div class="text-white/50 text-xs text-center">
+                Copyright &copy; <span id="year"></span> Joyería y Relojería Neny • 14 Años de Trayectoria. Todos los derechos reservados.
             </div>
         </div>
     </footer>
 
+    <!-- Menú Móvil Modal Glassmorphism Centrado (Movido fuera del header) -->
+    <div id="mobileMenu"
+        class="hidden fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/50 backdrop-blur-md">
+        <!-- Tarjeta de Cristal Translúcida -->
+        <div
+            class="w-full max-w-xs bg-royal-dark/80 backdrop-blur-2xl border border-white/20 rounded-3xl p-7 shadow-2xl text-center space-y-5 text-white relative">
+            <!-- Close button -->
+            <button type="button" id="closeMobileMenuBtn"
+                class="absolute top-4 right-4 p-2 text-white/70 hover:text-white rounded-full focus:outline-none"
+                aria-label="Cerrar menú">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                    </path>
+                </svg>
+            </button>
+
+            <div class="pt-2 mb-4 flex flex-col items-center">
+                <img src="img/joyas-neny-logo-white.png?v=3.1.0" alt="Joyas Neny"
+                    class="h-12 sm:h-14 object-contain opacity-95">
+            </div>
+
+            <nav class="space-y-2.5 font-sans text-sm">
+                <a href="index.html#nosotros"
+                    class="block py-2.5 px-4 rounded-xl text-white/85 hover:text-white hover:bg-white/10 transition-all mobile-link font-medium">Sobre
+                    Nosotros</a>
+                <a href="index.html#joyeria"
+                    class="block py-2.5 px-4 rounded-xl text-white/85 hover:text-white hover:bg-white/10 transition-all mobile-link font-medium">Joyería
+                    Exclusiva</a>
+                <a href="index.html#relojeria"
+                    class="block py-2.5 px-4 rounded-xl text-white/85 hover:text-white hover:bg-white/10 transition-all mobile-link font-medium">Relojes
+                    Festina</a>
+                <a href="catalogo.html"
+                    class="block py-2.5 px-4 rounded-xl text-white bg-royal-blue/70 hover:bg-royal-blue/90 border border-white/20 transition-all mobile-link font-semibold">Ver
+                    Catálogo Festina</a>
+            </nav>
+
+            <div class="flex justify-center space-x-6 pt-4 border-t border-white/15">
+                <a href="https://www.instagram.com/relojeriayjoyerianeny/" target="_blank"
+                    class="text-white/80 hover:text-white transition-colors" aria-label="Instagram">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+                    </svg>
+                </a>
+                <a href="https://www.facebook.com/p/Joyas-neny-100063893836265/" target="_blank"
+                    class="text-white/80 hover:text-white transition-colors" aria-label="Facebook">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal Pop-up Promocional NENY2026 -->
+    <div id="promoModal" class="hidden fixed inset-0 z-[60] flex items-center justify-center p-4 sm:p-6 bg-black/65 backdrop-blur-sm" style="opacity:0">
+        <div id="promoModalContent" class="bg-white rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden relative" style="transform: scale(0.92); opacity:0">
+
+            <!-- Botón Cerrar -->
+            <button type="button" id="closePromoBtn" class="absolute top-3 right-3 p-1.5 text-white/60 hover:text-white focus:outline-none z-20 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+
+            <!-- Cabecera festiva -->
+            <div class="bg-royal-dark px-8 pt-10 pb-7 text-center relative overflow-hidden">
+                <div class="absolute -left-8 -top-8 w-36 h-36 bg-royal-blue/60 rounded-full blur-3xl"></div>
+                <div class="absolute -right-8 -bottom-8 w-32 h-32 bg-blue-400/30 rounded-full blur-3xl"></div>
+                <div class="text-5xl mb-3 relative z-10" style="font-family: 'Segoe UI Emoji', sans-serif">🎉</div>
+                <p class="text-blue-200 text-xs font-bold uppercase tracking-widest mb-1 relative z-10">Lanzamiento Oficial</p>
+                <h3 class="font-serif text-3xl font-bold text-white mb-1 relative z-10">¡Estrenamos<br>Nueva Web!</h3>
+                <p class="text-blue-100/70 text-sm relative z-10 mt-2">Queremos celebrar este hito contigo.<br>Disfruta de este regalo exclusivo:</p>
+            </div>
+
+            <!-- Cuerpo del cupón -->
+            <div class="px-7 pt-6 pb-7 text-center">
+                <div class="relative my-4">
+                    <div class="flex items-center">
+                        <div class="w-4 h-8 bg-white -mr-1 z-10 relative" style="border-radius: 0 50% 50% 0; border: 2px dashed #E2E8F0; border-left: none;"></div>
+                        <div class="flex-1 bg-royal-light border-2 border-dashed border-royal-blue/30 py-4 px-5">
+                            <p class="text-[10px] uppercase tracking-widest text-royal-blue/60 font-bold mb-0.5">Tu código de descuento</p>
+                            <p class="font-mono text-3xl font-black text-royal-blue tracking-widest">NENY2026</p>
+                            <p class="text-[10px] text-gray-400 mt-1">15% en Relojes Festina • válido hasta 30 sep 2026</p>
+                        </div>
+                        <div class="w-4 h-8 bg-white -ml-1 z-10 relative" style="border-radius: 50% 0 0 50%; border: 2px dashed #E2E8F0; border-right: none;"></div>
+                    </div>
+                </div>
+
+                <p class="text-xs text-gray-400 mb-5 leading-relaxed">Único para cotizaciones hechas por WhatsApp a través de nuestra página. Se aplicará automáticamente en tu mensaje.</p>
+
+                <button type="button" id="claimPromoBtn" class="w-full bg-royal-blue hover:bg-royal-dark text-white font-bold py-4 px-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2.5 text-base">
+                    <span class="text-xl">🏷️</span>
+                    <span>Reclamar Cupon</span>
+                </button>
+
+                <p class="text-[10px] text-gray-400 mt-3">Al reclamar, el cupón quedará guardado y se aplicará a todos tus relojes.</p>
+            </div>
+        </div>
+    </div>
+
+
     <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/56900000000?text=Hola,%20quisiera%20consultar%20por%20un%20reloj%20del%20cat%C3%A1logo." 
-       target="_blank" 
-       class="whatsapp-clean-btn"
-       aria-label="WhatsApp">
-        <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-        <span class="hidden sm:inline">Consultar por WhatsApp</span>
+    <a href="https://wa.me/56996234090?text=Hola,%20quisiera%20consultar%20por%20un%20reloj%20del%20cat%C3%A1logo."
+        target="_blank" class="whatsapp-clean-btn" aria-label="WhatsApp">
+        <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+            <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+        </svg>
+        <span class="hidden sm:inline">Cotizar por WhatsApp</span>
     </a>
 
     <!-- Anime.js & Catalog Script -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-    <script src="js/catalogo.js"></script>
+    <script src="js/relojes-data.js?v=4.2.0"></script>
+    <script src="js/catalogo.js?v=4.2.0"></script>
 </body>
+
 </html>

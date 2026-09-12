@@ -129,18 +129,133 @@ document.addEventListener('DOMContentLoaded', () => {
     // 4. FORMULARIO DE CONTACTO -> WHATSAPP
     // ==========================================
     const contactForm = document.getElementById('contactForm');
+    const btnSelectArgollas = document.getElementById('btnSelectArgollas');
+    const btnSelectRelojes = document.getElementById('btnSelectRelojes');
+    const relojesWarning = document.getElementById('relojesWarning');
+    const formType = document.getElementById('formType');
+
+    const resetTypeSelectors = () => {
+        if (btnSelectArgollas && btnSelectRelojes && relojesWarning) {
+            btnSelectArgollas.classList.remove('bg-royal-blue', 'text-white', 'border-royal-blue');
+            btnSelectArgollas.classList.add('bg-white', 'text-gray-600', 'border-gray-300');
+            btnSelectRelojes.classList.remove('bg-royal-blue', 'text-white', 'border-royal-blue');
+            btnSelectRelojes.classList.add('bg-white', 'text-gray-600', 'border-gray-300');
+            relojesWarning.classList.add('hidden');
+        }
+    };
+
+    if (btnSelectArgollas && btnSelectRelojes) {
+        btnSelectArgollas.addEventListener('click', () => {
+            resetTypeSelectors();
+            btnSelectArgollas.classList.remove('bg-white', 'text-gray-600', 'border-gray-300');
+            btnSelectArgollas.classList.add('bg-royal-blue', 'text-white', 'border-royal-blue');
+            if (formType) formType.value = 'Argollas/Joyas';
+        });
+
+        btnSelectRelojes.addEventListener('click', () => {
+            resetTypeSelectors();
+            btnSelectRelojes.classList.remove('bg-white', 'text-gray-600', 'border-gray-300');
+            btnSelectRelojes.classList.add('bg-royal-blue', 'text-white', 'border-royal-blue');
+            if (formType) formType.value = 'Relojes Festina';
+            if (relojesWarning) relojesWarning.classList.remove('hidden');
+        });
+    }
+
     if (contactForm) {
+        // Auto-fill discount field if coupon was already claimed
+        const formDiscount = document.getElementById('formDiscount');
+        if (formDiscount && localStorage.getItem('claimedCouponNeny') === 'NENY2026') {
+            formDiscount.value = 'NENY2026';
+        }
+
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const name = document.getElementById('formName')?.value.trim() || '';
             const phone = document.getElementById('formPhone')?.value.trim() || '';
             const message = document.getElementById('formMessage')?.value.trim() || '';
+            const type = formType ? formType.value : '';
+            const couponClaimed = localStorage.getItem('claimedCouponNeny') === 'NENY2026';
 
-            const waText = `Hola Joyería Neny, mi nombre es ${name} (Tel: ${phone}). Quisiera consultar lo siguiente: ${message}`;
-            const waUrl = `https://wa.me/56900000000?text=${encodeURIComponent(waText)}`;
+            let typeText = type ? `[Consulta sobre: ${type}] ` : '';
+            let waText = `Hola Joyería Neny, mi nombre es ${name} (Tel: ${phone}). ${typeText}Quisiera consultar lo siguiente: ${message}`;
 
+            // Attach coupon ONLY for Relojes Festina inquiries
+            if (couponClaimed && type === 'Relojes Festina') {
+                waText += `\n\n🏷️ Cupón Activado: NENY2026 (El cliente tiene un 15% de descuento)`;
+            }
+
+            const waUrl = `https://wa.me/56996234090?text=${encodeURIComponent(waText)}`;
             window.open(waUrl, '_blank');
             contactForm.reset();
+            resetTypeSelectors();
+            if (formType) formType.value = '';
+            // Re-fill discount field after reset if coupon is claimed
+            if (formDiscount && localStorage.getItem('claimedCouponNeny') === 'NENY2026') {
+                formDiscount.value = 'NENY2026';
+            }
+        });
+    }
+
+    // ==========================================
+    // PROMO MODAL LOGIC (NENY2026)
+    // ==========================================
+    const promoModal = document.getElementById('promoModal');
+    if (promoModal) {
+        const closePromoBtn = document.getElementById('closePromoBtn');
+        const claimPromoBtn = document.getElementById('claimPromoBtn');
+        const promoContent = document.getElementById('promoModalContent');
+
+        const closePromo = () => {
+            if (promoContent) {
+                anime({ targets: promoContent, scale: [1, 0.95], opacity: [1, 0], duration: 300, easing: 'easeInQuad' });
+            }
+            anime({
+                targets: promoModal,
+                opacity: [1, 0],
+                duration: 300,
+                easing: 'easeInQuad',
+                complete: () => promoModal.classList.add('hidden')
+            });
+        };
+
+        const openPromo = () => {
+            promoModal.classList.remove('hidden');
+            anime({ targets: promoModal, opacity: [0, 1], duration: 400, easing: 'easeOutQuad' });
+            if (promoContent) {
+                anime({ targets: promoContent, scale: [0.92, 1], opacity: [0, 1], duration: 500, easing: 'easeOutBack' });
+            }
+        };
+
+        // Show only if not claimed yet, 3 seconds after page load
+        if (!localStorage.getItem('claimedCouponNeny')) {
+            setTimeout(() => {
+                openPromo();
+            }, 3000);
+        }
+
+        if (closePromoBtn) closePromoBtn.addEventListener('click', closePromo);
+
+        if (claimPromoBtn) {
+            claimPromoBtn.addEventListener('click', () => {
+                // Save coupon to localStorage (permanent until cleared)
+                localStorage.setItem('claimedCouponNeny', 'NENY2026');
+
+                // Auto-fill the discount field in the contact form
+                const formDiscount = document.getElementById('formDiscount');
+                if (formDiscount) formDiscount.value = 'NENY2026';
+
+                // Celebratory button feedback
+                claimPromoBtn.innerHTML = '<span class="text-xl">✅</span><span>¡Cupón Reclamado!</span>';
+                claimPromoBtn.classList.add('bg-green-600');
+                claimPromoBtn.classList.remove('bg-royal-blue', 'hover:bg-royal-dark');
+                claimPromoBtn.disabled = true;
+
+                setTimeout(() => closePromo(), 1800);
+            });
+        }
+
+        promoModal.addEventListener('click', (e) => {
+            if (e.target === promoModal) closePromo();
         });
     }
 });
@@ -208,3 +323,71 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => animateIcon(icon), anime.random(0, 2000));
         });
     }
+
+    // ==========================================
+    // 6. MODELOS DESTACADOS FESTINA ALEATORIOS (LANDING)
+    // ==========================================
+    function renderFeaturedWatches() {
+        const container = document.getElementById('featuredWatchesGrid');
+        if (!container) return;
+
+        // Obtener relojes de la base global de datos
+        const source = (typeof watches !== 'undefined' && Array.isArray(watches) && watches.length) 
+            ? watches 
+            : null;
+
+        if (!source) return;
+
+        // Mezclar aleatoriamente y tomar 3 modelos únicos
+        const shuffled = [...source].sort(() => Math.random() - 0.5);
+        const selected = shuffled.slice(0, 3);
+
+        container.innerHTML = '';
+        selected.forEach((watch) => {
+            const item = document.createElement('div');
+            item.className = 'flex flex-col items-center text-center group';
+            item.innerHTML = `
+                <a href="catalogo.html" class="w-full flex flex-col items-center group cursor-pointer" title="Ver ${watch.name} en el catálogo">
+                    <!-- Marco de Cristal con Fondo Blanco para el Reloj -->
+                    <div class="w-56 h-56 sm:w-64 sm:h-64 rounded-3xl bg-[#FDFBF7] border border-white/15 p-6 mb-6 shadow-xl transition-all duration-500 group-hover:scale-105 group-hover:shadow-[0_20px_40px_rgba(0,0,0,0.5)] group-hover:border-blue-300/50 relative flex items-center justify-center overflow-hidden">
+                        <img src="${watch.imagePath}" alt="${watch.name}" class="w-full h-full object-contain filter drop-shadow-sm transition-transform duration-500 group-hover:scale-110" />
+                    </div>
+
+                    <!-- Código o Referencia -->
+                    <span class="text-[11px] font-sans font-bold tracking-[0.2em] text-blue-300 uppercase mb-1.5">
+                        ${watch.photoNum || 'Festina'}
+                    </span>
+
+                    <!-- Únicamente Nombre de Modelo (Sin Precio) -->
+                    <h3 class="text-xs sm:text-sm font-sans font-bold tracking-[0.15em] text-white uppercase line-clamp-2 max-w-[280px] group-hover:text-blue-200 transition-colors leading-snug">
+                        ${watch.name}
+                    </h3>
+
+                    <!-- Enlace elegante a catálogo -->
+                    <span class="mt-4 text-[11px] font-sans font-bold uppercase tracking-widest text-blue-300/75 group-hover:text-blue-200 transition-colors border-b border-blue-300/30 group-hover:border-blue-200 pb-0.5 flex items-center gap-1.5">
+                        <span>Ver en catálogo</span>
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    </span>
+                </a>
+            `;
+            container.appendChild(item);
+        });
+
+        if (typeof anime !== 'undefined') {
+            anime({
+                targets: '#featuredWatchesGrid > div',
+                opacity: [0, 1],
+                translateY: [20, 0],
+                delay: anime.stagger(100),
+                duration: 600,
+                easing: 'easeOutQuad'
+            });
+        }
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', renderFeaturedWatches);
+    } else {
+        renderFeaturedWatches();
+    }
+
