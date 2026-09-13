@@ -1,8 +1,17 @@
-# Joyas Neny - Web Oficial (v1.0.0) 💍✨
+# Joyas Neny - Web Oficial (v1.0.1) 💍✨
 
 Plataforma oficial de **Joyas Neny**, joyería y relojería con más de 14 años de trayectoria en la ciudad de Talca. Este sitio web sirve como un escaparate digital premium, catálogo oficial de relojes Festina, y plataforma automatizada para cotizaciones a través de WhatsApp.
 
-## 🚀 Versión 1.0.0 - Lanzamiento a Producción
+## 🚀 Changelog
+
+### Versión 1.0.1 - Optimización SEO y Google Shopping
+- **Estructura SEO Técnica:** Implementación de `sitemap.xml` con variantes de dominio y `robots.txt` para rastreo.
+- **Microformatos:** Inyección dinámica de `Schema.org` (JSON-LD) para e-commerce. Los más de 160 relojes Festina ahora declaran metadatos estructurados de "Producto" (precio, marca, stock), haciéndolos elegibles para Google Shopping. 
+- **Social Metadata:** Etiquetas *Open Graph* y *Twitter Cards* optimizadas para que al compartir por WhatsApp o redes sociales, el enlace se visualice con formato de tarjeta enriquecida.
+- **Métricas:** Configuración inicial del bloque de Google Analytics (GA4).
+- **Página de Error:** Nueva vista personalizada de `404.html` para enlaces rotos.
+
+### Versión 1.0.0 - Lanzamiento a Producción
 
 El sitio ha salido de su fase beta y está completamente certificado y auditado. Las últimas novedades de la **versión 1.0.0** incluyen:
 

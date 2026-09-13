@@ -654,6 +654,45 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.target === promoModal) closePromo();
         });
     }
+
+    // ==========================================
+    // SEO: GENERACIÓN DINÁMICA DE SCHEMA.ORG (PRODUCTOS)
+    // ==========================================
+    setTimeout(() => {
+        if (typeof watches !== 'undefined' && watches.length > 0) {
+            const schemaProducts = watches.map(watch => ({
+                "@type": "Product",
+                "name": watch.name,
+                "image": `https://www.joyeriayrelojerianeny.cl/${watch.imagePath}`,
+                "description": watch.description || `Reloj Festina modelo ${watch.name} para ${watch.gender}.`,
+                "brand": {
+                    "@type": "Brand",
+                    "name": "Festina"
+                },
+                "offers": {
+                    "@type": "Offer",
+                    "url": `https://www.joyeriayrelojerianeny.cl/catalogo.html`,
+                    "priceCurrency": "CLP",
+                    "price": watch.price * 1000,
+                    "itemCondition": "https://schema.org/NewCondition",
+                    "availability": "https://schema.org/InStock"
+                }
+            }));
+
+            const schemaScript = document.createElement('script');
+            schemaScript.type = 'application/ld+json';
+            schemaScript.text = JSON.stringify({
+                "@context": "https://schema.org/",
+                "@type": "ItemList",
+                "itemListElement": schemaProducts.map((p, i) => ({
+                    "@type": "ListItem",
+                    "position": i + 1,
+                    "item": p
+                }))
+            });
+            document.head.appendChild(schemaScript);
+        }
+    }, 1000);
 });
 
 
