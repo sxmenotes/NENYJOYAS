@@ -162,100 +162,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (contactForm) {
-        // Auto-fill discount field if coupon was already claimed
-        const formDiscount = document.getElementById('formDiscount');
-        if (formDiscount && localStorage.getItem('claimedCouponNeny') === 'NENY2026') {
-            formDiscount.value = 'NENY2026';
-        }
-
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const name = document.getElementById('formName')?.value.trim() || '';
             const phone = document.getElementById('formPhone')?.value.trim() || '';
             const message = document.getElementById('formMessage')?.value.trim() || '';
             const type = formType ? formType.value : '';
-            const couponClaimed = localStorage.getItem('claimedCouponNeny') === 'NENY2026';
 
             let typeText = type ? `[Consulta sobre: ${type}] ` : '';
             let waText = `Hola Joyería Neny, mi nombre es ${name} (Tel: ${phone}). ${typeText}Quisiera consultar lo siguiente: ${message}`;
-
-            // Attach coupon ONLY for Relojes Festina inquiries
-            if (couponClaimed && type === 'Relojes Festina') {
-                waText += `\n\n🏷️ Cupón Activado: NENY2026 (El cliente tiene un 15% de descuento)`;
-            }
 
             const waUrl = `https://wa.me/56996234090?text=${encodeURIComponent(waText)}`;
             window.open(waUrl, '_blank');
             contactForm.reset();
             resetTypeSelectors();
             if (formType) formType.value = '';
-            // Re-fill discount field after reset if coupon is claimed
-            if (formDiscount && localStorage.getItem('claimedCouponNeny') === 'NENY2026') {
-                formDiscount.value = 'NENY2026';
-            }
-        });
-    }
-
-    // ==========================================
-    // PROMO MODAL LOGIC (NENY2026)
-    // ==========================================
-    const promoModal = document.getElementById('promoModal');
-    if (promoModal) {
-        const closePromoBtn = document.getElementById('closePromoBtn');
-        const claimPromoBtn = document.getElementById('claimPromoBtn');
-        const promoContent = document.getElementById('promoModalContent');
-
-        const closePromo = () => {
-            if (promoContent) {
-                anime({ targets: promoContent, scale: [1, 0.95], opacity: [1, 0], duration: 300, easing: 'easeInQuad' });
-            }
-            anime({
-                targets: promoModal,
-                opacity: [1, 0],
-                duration: 300,
-                easing: 'easeInQuad',
-                complete: () => promoModal.classList.add('hidden')
-            });
-        };
-
-        const openPromo = () => {
-            promoModal.classList.remove('hidden');
-            anime({ targets: promoModal, opacity: [0, 1], duration: 400, easing: 'easeOutQuad' });
-            if (promoContent) {
-                anime({ targets: promoContent, scale: [0.92, 1], opacity: [0, 1], duration: 500, easing: 'easeOutBack' });
-            }
-        };
-
-        // Show only if not claimed yet, 3 seconds after page load
-        if (!localStorage.getItem('claimedCouponNeny')) {
-            setTimeout(() => {
-                openPromo();
-            }, 3000);
-        }
-
-        if (closePromoBtn) closePromoBtn.addEventListener('click', closePromo);
-
-        if (claimPromoBtn) {
-            claimPromoBtn.addEventListener('click', () => {
-                // Save coupon to localStorage (permanent until cleared)
-                localStorage.setItem('claimedCouponNeny', 'NENY2026');
-
-                // Auto-fill the discount field in the contact form
-                const formDiscount = document.getElementById('formDiscount');
-                if (formDiscount) formDiscount.value = 'NENY2026';
-
-                // Celebratory button feedback
-                claimPromoBtn.innerHTML = '<span class="text-xl">✅</span><span>¡Cupón Reclamado!</span>';
-                claimPromoBtn.classList.add('bg-green-600');
-                claimPromoBtn.classList.remove('bg-royal-blue', 'hover:bg-royal-dark');
-                claimPromoBtn.disabled = true;
-
-                setTimeout(() => closePromo(), 1800);
-            });
-        }
-
-        promoModal.addEventListener('click', (e) => {
-            if (e.target === promoModal) closePromo();
         });
     }
 });
@@ -392,19 +313,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 // ==========================================
-// 7. GALERÍA CÍRCULOS ASIMÉTRICOS (ORFEBRERÍA)
+// 7. GALERÍA VITRINA PREMIUM (ORFEBRERÍA)
 // ==========================================
-(function initCircleGallery() {
+(function initShowcaseGallery() {
 
-    // -- Crossfade por círculo --
-    // Cada círculo (.gc-slides) hace fade entre sus imágenes de forma independiente
-    function setupCircleFade(container, intervalMs, startDelay) {
+    // -- Crossfade principal: un solo contenedor con todas las imágenes --
+    function setupShowcaseFade(container, intervalMs) {
         const slides = container.querySelectorAll('.gc-slide');
         if (!slides || slides.length < 2) return;
 
+        // Contador UI
+        const counterEl = document.querySelector('.jewel-showcase__counter-current');
+        const totalEl   = document.querySelector('.jewel-showcase__counter-total');
+        if (totalEl) totalEl.textContent = String(slides.length).padStart(2, '0');
+
         // Estado inicial: primera visible, resto ocultas
         slides.forEach((s, i) => {
-            s.style.transition = 'opacity 1.1s cubic-bezier(0.4,0,0.2,1)';
+            s.style.transition = 'opacity 1.4s cubic-bezier(0.4, 0, 0.2, 1)';
             s.style.opacity    = i === 0 ? '1' : '0';
         });
 
@@ -415,64 +340,24 @@ document.addEventListener('DOMContentLoaded', () => {
             slides[current].style.opacity = '0';
             slides[next].style.opacity    = '1';
             current = next;
+
+            // Actualizar contador
+            if (counterEl) {
+                counterEl.textContent = String(next + 1).padStart(2, '0');
+            }
         }
 
+        // Arrancar con un pequeño delay inicial
         setTimeout(() => {
             setInterval(advance, intervalMs);
-        }, startDelay);
+        }, 800);
     }
 
-    // Inicializar cada círculo con tiempos distintos
-    const circleGroups = document.querySelectorAll('.gc-slides');
-    const intervals  = [4200, 3500, 3900];
-    const delays     = [0,    1100, 650];
-
-    circleGroups.forEach((group, i) => {
-        setupCircleFade(group, intervals[i] || 4000, delays[i] || 0);
-    });
-
-    // -- Líneas SVG conectoras --
-    // Dibuja líneas entre centros de los círculos una vez el DOM esté listo
-    function drawConnectors() {
-        const svg   = document.getElementById('gallery-connectors');
-        const line1 = document.getElementById('gc-line-1');
-        const line2 = document.getElementById('gc-line-2');
-        const line3 = document.getElementById('gc-line-3');
-
-        if (!svg || !line1 || !line2 || !line3) return;
-
-        const gcMain  = document.getElementById('gc-main');
-        const gcMid   = document.getElementById('gc-mid');
-        const gcSmall = document.getElementById('gc-small');
-
-        if (!gcMain || !gcMid || !gcSmall) return;
-
-        const svgRect = svg.getBoundingClientRect();
-
-        function center(el) {
-            const r = el.getBoundingClientRect();
-            return { x: r.left + r.width/2 - svgRect.left, y: r.top + r.height/2 - svgRect.top };
-        }
-
-        const m = center(gcMain);
-        const c = center(gcMid);
-        const s = center(gcSmall);
-
-        function setLine(line, p1, p2) {
-            line.setAttribute('x1', p1.x); line.setAttribute('y1', p1.y);
-            line.setAttribute('x2', p2.x); line.setAttribute('y2', p2.y);
-        }
-
-        setLine(line1, m, c);  // grande → mediano
-        setLine(line2, c, s);  // mediano → pequeño
-        setLine(line3, m, s);  // grande → pequeño
+    // Inicializar
+    const mainSlides = document.querySelector('#gc-main .gc-slides');
+    if (mainSlides) {
+        setupShowcaseFade(mainSlides, 4000);
     }
-
-    // Dibujar al cargar y al redimensionar
-    window.addEventListener('load',   drawConnectors);
-    window.addEventListener('resize', drawConnectors);
-    // Primer intento rápido por si el DOM ya está listo
-    requestAnimationFrame(drawConnectors);
 
 })();
 

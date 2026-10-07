@@ -16,10 +16,9 @@ Plataforma oficial de **Joyas Neny**, joyería y relojería con más de 14 años
 El sitio ha salido de su fase beta y está completamente certificado y auditado. Las últimas novedades de la **versión 1.0.0** incluyen:
 
 - **Catálogo Dinámico e Interactivo**: Integración de filtrado de productos por precio y popularidad.
-- **Sistema Inteligente de Cupones**: Pop-up inmersivo de bienvenida por "Lanzamiento Web" que ofrece un 15% de descuento en la colección Festina. El cupón queda indexado en el navegador (caché local) y auto-aplica los precios con descuento visualmente en toda la colección.
 - **Integración fluida con WhatsApp Business**:
   - Los formularios detectan automáticamente si la consulta es de Relojes o Argollas.
-  - Los cupones se adjuntan exclusivamente en los mensajes de cotización sobre "Relojes Festina".
+  - Generación inteligente de mensajes contextualizados con el modelo y cotización directa.
   - Todos los botones apuntan al número oficial en producción (`+56 9 9623 4090`).
 - **Accesibilidad y SEO mejorados**: Landmarks (`<main>`, `<h1>`), `aria-labels` en todos los enlaces no textuales y mejora del contraste.
 - **Auditoría Superada**: Sistema automatizado con `@playwright/test` validando *Performance*, *Accesibilidad (Axe Core)*, integridad de *imágenes y enlaces*, y validación visual multi-dispositivo sin errores.

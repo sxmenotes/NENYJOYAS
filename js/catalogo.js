@@ -234,32 +234,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 `<span class="text-[10px] font-semibold px-2.5 py-0.5 bg-gray-50 text-gray-500 rounded-full border border-gray-200/80">${spec}</span>`
             ).join('');
 
-            const isCouponClaimed = localStorage.getItem('claimedCouponNeny') === 'NENY2026';
-            let displayPriceHtml = '';
-            let discountBadgeHtml = '';
-            let displayPriceForButton = watch.formattedPrice || formatPrice(watch.price);
-
-            if (isCouponClaimed) {
-                const discountedPrice = watch.price * 0.85;
-                const formattedOriginal = watch.formattedPrice || formatPrice(watch.price);
-                const formattedDiscounted = formatPrice(discountedPrice);
-                displayPriceForButton = formattedDiscounted;
-                
-                displayPriceHtml = `
-                    <div class="flex flex-col">
-                        <span class="text-sm line-through text-gray-400 font-normal leading-none mb-1">${formattedOriginal}</span>
-                        <span class="text-lg font-bold text-royal-blue leading-none">${formattedDiscounted}</span>
-                    </div>
-                `;
-                discountBadgeHtml = `<span class="absolute top-3 left-3 bg-red-600 text-white text-[10px] font-bold px-2 py-1 rounded-md z-20 shadow-sm flex items-center gap-1"><svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58.55 0 1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41 0-.55-.23-1.06-.59-1.42zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7z"/></svg> -15% NENY2026</span>`;
-            } else {
-                const displayPrice = watch.formattedPrice || formatPrice(watch.price);
-                displayPriceHtml = `${displayPrice}`;
-            }
+            const displayPrice = watch.formattedPrice || formatPrice(watch.price);
+            const displayPriceForButton = displayPrice;
+            const displayPriceHtml = `${displayPrice}`;
 
             card.innerHTML = `
                 <div class="relative z-10 flex flex-col h-full">
-                    ${discountBadgeHtml}
                     <div class="w-full bg-[#FDFBF7] border border-gray-100 rounded-2xl aspect-[4/5] mb-5 flex flex-col items-center justify-center relative overflow-hidden group-hover:border-royal-blue/30 transition-colors">
                         <img src="${watch.imagePath}" alt="${watch.name}" class="absolute inset-0 w-full h-full object-contain p-2 z-0 opacity-0 transition-opacity duration-500" onload="this.style.opacity=1" onerror="this.style.display='none'" />
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900/40 via-transparent to-transparent pointer-events-none z-10"></div>
@@ -482,8 +462,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const openModal = (watch) => {
-        const isCouponClaimed = localStorage.getItem('claimedCouponNeny') === 'NENY2026';
-        let displayPriceForModal = watch.formattedPrice || formatPrice(watch.price);
+        const displayPriceForModal = watch.formattedPrice || formatPrice(watch.price);
         
         // Llenar datos
         modalImage.style.display = 'block';
@@ -494,21 +473,7 @@ document.addEventListener('DOMContentLoaded', () => {
         modalName.textContent = watch.name;
         
         if (modalPrice) {
-            if (isCouponClaimed) {
-                const discountedPrice = watch.price * 0.85;
-                const formattedOriginal = watch.formattedPrice || formatPrice(watch.price);
-                const formattedDiscounted = formatPrice(discountedPrice);
-                displayPriceForModal = formattedDiscounted;
-                modalPrice.innerHTML = `
-                    <div class="flex items-baseline gap-3">
-                        <span class="text-2xl font-bold text-royal-blue">${formattedDiscounted}</span>
-                        <span class="text-base line-through text-gray-400 font-normal">${formattedOriginal}</span>
-                        <span class="bg-red-600 text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider ml-2">Cupón Activado</span>
-                    </div>
-                `;
-            } else {
-                modalPrice.textContent = displayPriceForModal;
-            }
+            modalPrice.textContent = displayPriceForModal;
         }
 
         modalDescription.textContent = watch.description;
@@ -529,14 +494,8 @@ document.addEventListener('DOMContentLoaded', () => {
             `<span class="text-xs font-semibold px-3 py-1 bg-gray-50 text-gray-600 rounded-full border border-gray-200/80 shadow-xs">${spec}</span>`
         ).join('');
         
-        // Link de Whatsapp con nombre y precio y cupón
-        let whatsappCouponText = '';
-        let priceContext = '';
-        if (isCouponClaimed) {
-            priceContext = ' - ¡15% de dcto ya aplicado al precio!';
-            whatsappCouponText = '%0A%0A%F0%9F%8F%B7%EF%B8%8F%20Cup%C3%B3n%20Activado:%20NENY2026';
-        }
-        modalWhatsappBtn.href = `https://wa.me/56996234090?text=Hola,%20Joyer%C3%ADa%20Neny,%20me%20gustar%C3%ADa%20cotizar%20este%20reloj%20Festina:%20${encodeURIComponent(watch.name)}%20(${encodeURIComponent(displayPriceForModal)}${encodeURIComponent(priceContext)})${whatsappCouponText}`;
+        // Link de Whatsapp con nombre y precio
+        modalWhatsappBtn.href = `https://wa.me/56996234090?text=Hola,%20Joyer%C3%ADa%20Neny,%20me%20gustar%C3%ADa%20cotizar%20este%20reloj%20Festina:%20${encodeURIComponent(watch.name)}%20(${encodeURIComponent(displayPriceForModal)})`;
         
         // Mostrar modal
         modal.classList.remove('hidden');
@@ -592,68 +551,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // ==========================================
-    // PROMO MODAL LOGIC (NENY2026)
-    // ==========================================
-    const promoModal = document.getElementById('promoModal');
-    if (promoModal) {
-        const closePromoBtn = document.getElementById('closePromoBtn');
-        const claimPromoBtn = document.getElementById('claimPromoBtn');
-        const promoContent = document.getElementById('promoModalContent');
 
-        const closePromo = () => {
-            if (promoContent) {
-                anime({ targets: promoContent, scale: [1, 0.95], opacity: [1, 0], duration: 300, easing: 'easeInQuad' });
-            }
-            anime({
-                targets: promoModal,
-                opacity: [1, 0],
-                duration: 300,
-                easing: 'easeInQuad',
-                complete: () => promoModal.classList.add('hidden')
-            });
-        };
-
-        const openPromo = () => {
-            promoModal.classList.remove('hidden');
-            anime({ targets: promoModal, opacity: [0, 1], duration: 400, easing: 'easeOutQuad' });
-            if (promoContent) {
-                anime({ targets: promoContent, scale: [0.92, 1], opacity: [0, 1], duration: 500, easing: 'easeOutBack' });
-            }
-        };
-
-        // Show only if not claimed yet, 3s after load
-        if (!localStorage.getItem('claimedCouponNeny')) {
-            setTimeout(() => {
-                openPromo();
-            }, 3000);
-        }
-
-        if (closePromoBtn) closePromoBtn.addEventListener('click', closePromo);
-
-        if (claimPromoBtn) {
-            claimPromoBtn.addEventListener('click', () => {
-                // Persist coupon in localStorage
-                localStorage.setItem('claimedCouponNeny', 'NENY2026');
-
-                // Celebratory feedback on button
-                claimPromoBtn.innerHTML = '<span class="text-xl">✅</span><span>¡Cupón Reclamado!</span>';
-                claimPromoBtn.classList.add('bg-green-600');
-                claimPromoBtn.classList.remove('bg-royal-blue', 'hover:bg-royal-dark');
-                claimPromoBtn.disabled = true;
-
-                // Re-render catalog cards to immediately show discount badges
-                setTimeout(() => {
-                    closePromo();
-                    renderCurrentPage();
-                }, 1800);
-            });
-        }
-
-        promoModal.addEventListener('click', (e) => {
-            if (e.target === promoModal) closePromo();
-        });
-    }
 
     // ==========================================
     // SEO: GENERACIÓN DINÁMICA DE SCHEMA.ORG (PRODUCTOS)

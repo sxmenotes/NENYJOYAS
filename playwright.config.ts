@@ -9,10 +9,15 @@ export default defineConfig({
     ['list'],
   ],
   use: {
-    baseURL: 'http://localhost:51429', // o la URL de staging
+    baseURL: 'http://localhost:8080',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
+  },
+  webServer: {
+    command: 'npx serve -l 8080 -n .',
+    port: 8080,
+    reuseExistingServer: true,
   },
   projects: [
     // Desktop
