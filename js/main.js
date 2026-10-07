@@ -391,3 +391,88 @@ document.addEventListener('DOMContentLoaded', () => {
         renderFeaturedWatches();
     }
 
+// ==========================================
+// 7. GALERÍA CÍRCULOS ASIMÉTRICOS (ORFEBRERÍA)
+// ==========================================
+(function initCircleGallery() {
+
+    // -- Crossfade por círculo --
+    // Cada círculo (.gc-slides) hace fade entre sus imágenes de forma independiente
+    function setupCircleFade(container, intervalMs, startDelay) {
+        const slides = container.querySelectorAll('.gc-slide');
+        if (!slides || slides.length < 2) return;
+
+        // Estado inicial: primera visible, resto ocultas
+        slides.forEach((s, i) => {
+            s.style.transition = 'opacity 1.1s cubic-bezier(0.4,0,0.2,1)';
+            s.style.opacity    = i === 0 ? '1' : '0';
+        });
+
+        let current = 0;
+
+        function advance() {
+            const next = (current + 1) % slides.length;
+            slides[current].style.opacity = '0';
+            slides[next].style.opacity    = '1';
+            current = next;
+        }
+
+        setTimeout(() => {
+            setInterval(advance, intervalMs);
+        }, startDelay);
+    }
+
+    // Inicializar cada círculo con tiempos distintos
+    const circleGroups = document.querySelectorAll('.gc-slides');
+    const intervals  = [4200, 3500, 3900];
+    const delays     = [0,    1100, 650];
+
+    circleGroups.forEach((group, i) => {
+        setupCircleFade(group, intervals[i] || 4000, delays[i] || 0);
+    });
+
+    // -- Líneas SVG conectoras --
+    // Dibuja líneas entre centros de los círculos una vez el DOM esté listo
+    function drawConnectors() {
+        const svg   = document.getElementById('gallery-connectors');
+        const line1 = document.getElementById('gc-line-1');
+        const line2 = document.getElementById('gc-line-2');
+        const line3 = document.getElementById('gc-line-3');
+
+        if (!svg || !line1 || !line2 || !line3) return;
+
+        const gcMain  = document.getElementById('gc-main');
+        const gcMid   = document.getElementById('gc-mid');
+        const gcSmall = document.getElementById('gc-small');
+
+        if (!gcMain || !gcMid || !gcSmall) return;
+
+        const svgRect = svg.getBoundingClientRect();
+
+        function center(el) {
+            const r = el.getBoundingClientRect();
+            return { x: r.left + r.width/2 - svgRect.left, y: r.top + r.height/2 - svgRect.top };
+        }
+
+        const m = center(gcMain);
+        const c = center(gcMid);
+        const s = center(gcSmall);
+
+        function setLine(line, p1, p2) {
+            line.setAttribute('x1', p1.x); line.setAttribute('y1', p1.y);
+            line.setAttribute('x2', p2.x); line.setAttribute('y2', p2.y);
+        }
+
+        setLine(line1, m, c);  // grande → mediano
+        setLine(line2, c, s);  // mediano → pequeño
+        setLine(line3, m, s);  // grande → pequeño
+    }
+
+    // Dibujar al cargar y al redimensionar
+    window.addEventListener('load',   drawConnectors);
+    window.addEventListener('resize', drawConnectors);
+    // Primer intento rápido por si el DOM ya está listo
+    requestAnimationFrame(drawConnectors);
+
+})();
+
