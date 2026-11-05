@@ -311,62 +311,99 @@ body {
 }
 
 /* ===========================================
-   JEWEL SHOWCASE — Premium Gallery Component
+   JEWEL SHOWCASE — Clean Bento Trio & Minimalist Gallery
    =========================================== */
 
 .jewel-showcase {
     position: relative;
     display: flex;
-    align-items: center;
+    align-items: stretch;
     justify-content: center;
-    min-height: 520px;
-    padding: 2rem 0;
+    padding: 0.5rem 0;
+}
+
+.jewel-bento-trio {
+    display: grid;
+    grid-template-columns: 1.35fr 1fr;
+    gap: 1rem;
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+    align-items: stretch;
+}
+
+.jewel-bento-trio__side {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 1rem;
 }
 
 /* --- Vitrina Principal --- */
 .jewel-showcase__main {
     position: relative;
     width: 100%;
-    max-width: 440px;
     aspect-ratio: 3 / 4;
-    border-radius: 1rem;
+    border-radius: 1.25rem;
     overflow: hidden;
     z-index: 2;
-    /* Outer shadow: large diffuse blue glow */
+    background-color: #0A163B;
     box-shadow:
         0 24px 60px -12px rgba(22, 44, 109, 0.22),
         0 8px 20px -4px rgba(22, 44, 109, 0.10);
-    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-                box-shadow 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .jewel-showcase__main:hover {
-    transform: translateY(-4px) scale(1.008);
+    transform: translateY(-3px);
     box-shadow:
         0 32px 70px -12px rgba(22, 44, 109, 0.28),
         0 12px 28px -4px rgba(22, 44, 109, 0.14);
+}
+
+/* --- Vitrinas Secundarias (Bento Derecho) --- */
+.jewel-showcase__sub {
+    position: relative;
+    width: 100%;
+    min-height: 190px;
+    border-radius: 1.15rem;
+    overflow: hidden;
+    z-index: 2;
+    background-color: #0A163B;
+    box-shadow:
+        0 16px 36px -10px rgba(22, 44, 109, 0.16),
+        0 4px 12px -2px rgba(22, 44, 109, 0.08);
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.jewel-showcase__sub:hover {
+    transform: translateY(-3px);
+    box-shadow:
+        0 22px 44px -10px rgba(22, 44, 109, 0.24);
 }
 
 /* Marco decorativo de doble borde — efecto "joyero" */
 .jewel-showcase__frame {
     position: absolute;
     inset: 6px;
-    border: 1.5px solid rgba(22, 44, 109, 0.18);
-    border-radius: 0.65rem;
+    border: 1.5px solid rgba(255, 255, 255, 0.22);
+    border-radius: 0.9rem;
     z-index: 10;
     pointer-events: none;
-    transition: border-color 0.6s ease;
+    transition: border-color 0.5s ease;
 }
 
-.jewel-showcase__main:hover .jewel-showcase__frame {
-    border-color: rgba(22, 44, 109, 0.32);
+.jewel-showcase__main:hover .jewel-showcase__frame,
+.jewel-showcase__sub:hover .jewel-showcase__frame {
+    border-color: rgba(255, 255, 255, 0.42);
 }
 
 /* Esquinas ornamentales — detalles tipo "filigrana" */
 .jewel-showcase__corner {
     position: absolute;
-    width: 24px;
-    height: 24px;
+    width: 22px;
+    height: 22px;
     z-index: 11;
     pointer-events: none;
 }
@@ -375,27 +412,25 @@ body {
 .jewel-showcase__corner::after {
     content: '';
     position: absolute;
-    background-color: rgba(22, 44, 109, 0.30);
-    transition: background-color 0.6s ease;
+    background-color: rgba(255, 255, 255, 0.45);
+    transition: background-color 0.5s ease;
 }
 
 .jewel-showcase__main:hover .jewel-showcase__corner::before,
 .jewel-showcase__main:hover .jewel-showcase__corner::after {
-    background-color: rgba(22, 44, 109, 0.50);
+    background-color: rgba(255, 255, 255, 0.75);
 }
 
-/* Brazos horizontales y verticales de cada esquina */
 .jewel-showcase__corner::before {
-    width: 24px;
+    width: 22px;
     height: 1.5px;
 }
 
 .jewel-showcase__corner::after {
     width: 1.5px;
-    height: 24px;
+    height: 22px;
 }
 
-/* Posiciones */
 .jewel-showcase__corner--tl { top: 14px; left: 14px; }
 .jewel-showcase__corner--tl::before { top: 0; left: 0; }
 .jewel-showcase__corner--tl::after  { top: 0; left: 0; }
@@ -425,56 +460,23 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    will-change: opacity;
+    transition: opacity 0.85s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* --- Contador de pieza --- */
-.jewel-showcase__counter {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    z-index: 12;
-    display: flex;
-    align-items: baseline;
-    gap: 2px;
-    font-family: var(--font-sans);
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    color: rgba(255, 255, 255, 0.85);
-    background: rgba(22, 44, 109, 0.55);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    padding: 6px 12px;
-    border-radius: 9999px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    pointer-events: none;
-    transition: opacity 0.4s ease;
-}
-
-.jewel-showcase__counter-current {
-    font-size: 0.8rem;
-    font-weight: 700;
-    color: #FFFFFF;
-}
-
-.jewel-showcase__counter-sep {
-    opacity: 0.5;
-    margin: 0 1px;
-}
-
-.jewel-showcase__counter-total {
-    opacity: 0.7;
+.jewel-showcase__main:hover .gc-slide,
+.jewel-showcase__sub:hover .gc-slide {
+    transform: scale(1.04);
 }
 
 /* --- Acento Decorativo Flotante (rombo) --- */
 .jewel-showcase__accent {
     position: absolute;
-    top: 12%;
-    right: -8%;
-    width: 80px;
-    height: 80px;
+    top: -12px;
+    right: -12px;
+    width: 68px;
+    height: 68px;
     z-index: 1;
+    pointer-events: none;
     animation: showcase-float 6s ease-in-out infinite;
 }
 
@@ -489,31 +491,223 @@ body {
         rgba(22, 44, 109, 0.04) 0%,
         rgba(22, 44, 109, 0.01) 100%
     );
-    backdrop-filter: blur(2px);
-    transition: border-color 0.6s ease;
 }
 
-.jewel-showcase:hover .jewel-showcase__accent-inner {
-    border-color: rgba(22, 44, 109, 0.25);
+/* --- Pestañas / Filtros de Categorías --- */
+.joya-tab-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1.25rem;
+    border-radius: 9999px;
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    white-space: nowrap;
+    border: 1.5px solid var(--color-border);
+    background-color: #FFFFFF;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* --- Línea decorativa --- */
-.jewel-showcase__line {
+.joya-tab-btn:hover {
+    border-color: var(--color-royal-blue);
+    color: var(--color-royal-blue);
+    transform: translateY(-1px);
+}
+
+.joya-tab-btn.is-active {
+    background-color: var(--color-royal-blue);
+    border-color: var(--color-royal-blue);
+    color: #FFFFFF;
+    box-shadow: 0 8px 20px -4px rgba(22, 44, 109, 0.28);
+}
+
+/* --- Tarjetas del Mosaico Interactivo (Solo Fotografía Limpia) --- */
+.joya-card {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    border-radius: 1.15rem;
+    overflow: hidden;
+    background-color: #0A163B;
+    border: 1px solid rgba(22, 44, 109, 0.10);
+    box-shadow: 0 6px 20px -6px rgba(15, 23, 42, 0.10);
+    cursor: pointer;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.4s ease;
+}
+
+.joya-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(22, 44, 109, 0.28);
+    box-shadow: 0 18px 36px -8px rgba(22, 44, 109, 0.20);
+}
+
+.joya-card__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.joya-card:hover .joya-card__img {
+    transform: scale(1.05);
+}
+
+/* ===========================================
+   LIGHTBOX MINIMALISTA — Efecto Vidrio Translúcido
+   =========================================== */
+
+.jewel-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.25rem;
+    /* Vidrio esmerilado translúcido que opaca suavemente el fondo */
+    background: rgba(10, 18, 38, 0.52);
+    backdrop-filter: blur(18px) saturate(120%);
+    -webkit-backdrop-filter: blur(18px) saturate(120%);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+                visibility 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.jewel-lightbox.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.jewel-lightbox__card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 520px;
+    width: 100%;
+    transform: scale(0.94) translateY(10px);
+    opacity: 0;
+    transition: transform 0.42s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.36s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.jewel-lightbox.is-open .jewel-lightbox__card {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+}
+
+.jewel-lightbox__stage {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.jewel-lightbox__img {
+    max-height: 76vh;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    border-radius: 1.35rem;
+    box-shadow: 0 28px 70px -12px rgba(0, 0, 0, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    user-select: none;
+}
+
+.jewel-lightbox__close {
     position: absolute;
-    bottom: 8%;
-    left: -6%;
-    width: 100px;
-    height: 1.5px;
-    background: linear-gradient(
-        90deg,
-        transparent 0%,
-        rgba(22, 44, 109, 0.20) 30%,
-        rgba(22, 44, 109, 0.20) 70%,
-        transparent 100%
-    );
-    z-index: 1;
-    transform: rotate(-15deg);
-    animation: showcase-line-pulse 4s ease-in-out infinite;
+    top: -14px;
+    right: -6px;
+    z-index: 20;
+    width: 38px;
+    height: 38px;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.16);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.22s ease;
+}
+
+.jewel-lightbox__close:hover {
+    background: rgba(255, 255, 255, 0.28);
+    transform: scale(1.06);
+}
+
+.jewel-lightbox__nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 15;
+    width: 40px;
+    height: 40px;
+    border-radius: 9999px;
+    background: rgba(15, 23, 42, 0.38);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.22s ease;
+}
+
+.jewel-lightbox__nav:hover {
+    background: rgba(22, 44, 109, 0.75);
+    border-color: rgba(255, 255, 255, 0.45);
+    transform: translateY(-50%) scale(1.06);
+}
+
+.jewel-lightbox__nav--prev { left: 12px; }
+.jewel-lightbox__nav--next { right: 12px; }
+
+.jewel-lightbox__footer {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.jewel-lightbox__wa-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.35rem;
+    border-radius: 9999px;
+    background: rgba(18, 140, 126, 0.92);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #FFFFFF;
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.jewel-lightbox__wa-btn:hover {
+    background: #075E54;
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px -5px rgba(0, 0, 0, 0.4);
 }
 
 /* --- Animaciones --- */
@@ -523,80 +717,26 @@ body {
     66% { transform: translateY(4px) translateX(-2px); }
 }
 
-@keyframes showcase-line-pulse {
-    0%, 100% { opacity: 0.6; }
-    50% { opacity: 1; }
-}
-
 /* --- Responsive --- */
-@media (max-width: 1023px) {
-    .jewel-showcase {
-        min-height: 440px;
-        padding: 1rem 0;
-    }
-
-    .jewel-showcase__main {
-        max-width: 360px;
-    }
-
-    .jewel-showcase__accent {
-        width: 60px;
-        height: 60px;
-        right: -4%;
-        top: 8%;
-    }
-
-    .jewel-showcase__line {
-        width: 70px;
-        left: -3%;
-    }
-}
-
 @media (max-width: 640px) {
-    .jewel-showcase {
-        min-height: 380px;
+    .jewel-bento-trio {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
     }
 
-    .jewel-showcase__main {
-        max-width: 300px;
+    .jewel-bento-trio__side {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+        gap: 0.75rem;
     }
 
-    .jewel-showcase__corner {
-        width: 18px;
-        height: 18px;
+    .jewel-showcase__sub {
+        min-height: 165px;
+        aspect-ratio: 3 / 4;
     }
 
-    .jewel-showcase__corner::before { width: 18px; }
-    .jewel-showcase__corner::after  { height: 18px; }
-
-    .jewel-showcase__corner--tl { top: 10px; left: 10px; }
-    .jewel-showcase__corner--tr { top: 10px; right: 10px; }
-    .jewel-showcase__corner--bl { bottom: 10px; left: 10px; }
-    .jewel-showcase__corner--br { bottom: 10px; right: 10px; }
-
-    .jewel-showcase__frame {
-        inset: 5px;
-    }
-
-    .jewel-showcase__accent {
-        width: 45px;
-        height: 45px;
-        right: 0;
-        top: 5%;
-    }
-
-    .jewel-showcase__line {
-        display: none;
-    }
-
-    .jewel-showcase__counter {
-        bottom: 14px;
-        right: 14px;
-        font-size: 0.6rem;
-        padding: 4px 10px;
-    }
-
-    .jewel-showcase__counter-current {
-        font-size: 0.7rem;
+    .jewel-lightbox__close {
+        top: 10px;
+        right: 10px;
     }
 }

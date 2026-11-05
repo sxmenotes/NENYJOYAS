@@ -373,143 +373,106 @@
         </div>
     </section>
 
-    <!-- JOYERÍA EXCLUSIVA (Galería Collage Circular) -->
-    <section id="joyeria" class="py-24 sm:py-32 bg-[#FDFBF7] border-t border-gray-100 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-            
-            <div class="grid lg:grid-cols-2 gap-16 lg:gap-8 items-center">
-                
-                <!-- Texto y CTA (Izquierda) -->
-                <div class="max-w-xl mx-auto lg:mx-0 text-center lg:text-left anime-reveal z-10 relative">
+    <!-- JOYERÍA EXCLUSIVA -->
+    <section id="joyeria" class="py-24 sm:py-32 bg-[#FDFBF7] border-t border-gray-100 overflow-hidden relative">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+
+            <!-- 1. ENCABEZADO EDITORIAL + VITRINA TRIPLE EN VIVO -->
+            <div class="grid lg:grid-cols-12 gap-12 lg:gap-10 items-center mb-16 sm:mb-20">
+
+                <!-- Columna Izquierda: Texto y CTA (5 cols) -->
+                <div class="lg:col-span-5 max-w-xl mx-auto lg:mx-0 text-center lg:text-left anime-reveal">
                     <span class="inline-block text-xs uppercase tracking-[0.2em] font-bold text-royal-blue border border-royal-blue/20 px-4 py-1.5 rounded-full mb-6">
                         Línea Exclusiva
                     </span>
+
                     <h2 class="text-4xl sm:text-5xl lg:text-6xl font-serif text-royal-blue mb-6 leading-[1.1]">
                         Orfebrería & Joyas <br><span class="italic font-normal">Únicas</span>
                     </h2>
-                    <p class="text-muted-gray text-base sm:text-lg leading-relaxed mb-10">
-                        Piezas finas de disponibilidad limitada. Cada joya cuenta con un diseño particular en oro y plata elaborados con engastes de alta precisión. Explora nuestra galería de trabajos únicos.
+
+                    <p class="text-muted-gray text-base sm:text-lg leading-relaxed mb-10 font-sans">
+                        Piezas finas de disponibilidad limitada. Cada joya cuenta con un diseño particular elaborado con engastes de alta precisión. Explora nuestra galería de trabajos únicos.
                     </p>
-                    <a href="https://wa.me/56996234090?text=Hola,%20quisiera%20consultar%20por%20disponibilidad%20y%20cotizar%20joyería." target="_blank" class="inline-flex items-center justify-center px-8 py-4 bg-royal-blue text-white rounded-full font-sans text-sm font-bold uppercase tracking-widest hover:bg-royal-dark transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1">
+
+                    <a href="https://wa.me/56996234090?text=Hola,%20quisiera%20consultar%20por%20disponibilidad%20y%20cotizar%20joyer%C3%ADa." target="_blank" class="inline-flex items-center justify-center px-8 py-4 bg-royal-blue text-white rounded-full font-sans text-sm font-bold uppercase tracking-widest hover:bg-royal-dark transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1">
                         Consulta disponibilidad y cotiza
                     </a>
                 </div>
 
-                <!-- Galería Vitrina Premium -->
+                <!-- Columna Derecha: Triple Vitrina Dinámica Limpia (7 cols) -->
                 <div id="interactive-gallery-container"
-                     class="relative w-full anime-reveal"
-                     aria-label="Galería de joyas exclusivas">
+                     class="lg:col-span-7 relative w-full anime-reveal"
+                     aria-label="Vitrinas dinámicas de joyas exclusivas">
 
-                    <!-- Composición de Vitrina -->
-                    <div class="jewel-showcase">
+                    <div class="jewel-showcase jewel-bento-trio">
 
-                        <!-- Marco principal — Vitrina central con borde doble -->
-                        <div id="gc-main" class="jewel-showcase__main">
-                            <!-- Borde decorativo exterior -->
+                        <!-- Vitrina Dinámica 1: Principal (Izquierda) -->
+                        <div id="gc-main" class="jewel-showcase__main group">
                             <div class="jewel-showcase__frame"></div>
-                            <!-- Esquinas ornamentales -->
                             <div class="jewel-showcase__corner jewel-showcase__corner--tl"></div>
                             <div class="jewel-showcase__corner jewel-showcase__corner--tr"></div>
                             <div class="jewel-showcase__corner jewel-showcase__corner--bl"></div>
                             <div class="jewel-showcase__corner jewel-showcase__corner--br"></div>
-                            <!-- Contenedor de imágenes con crossfade -->
-                            <div class="gc-slides jewel-showcase__slides">
-                                <img src="img/joyas/real/_MG_6440.webp" alt="Anillo de oro — Joyería Neny" class="gc-slide" loading="eager" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6441.webp" alt="Anillo de oro — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6444.webp" alt="Joya de oro — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6445.webp" alt="Joya de oro — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6447.webp" alt="Pieza de orfebrería — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6448.webp" alt="Pieza de orfebrería — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6451.webp" alt="Joya exclusiva — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6452.webp" alt="Joya exclusiva — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6455.webp" alt="Pieza fina — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6459.webp" alt="Pieza fina — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6460.webp" alt="Orfebrería fina — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6462.webp" alt="Orfebrería fina — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6466.webp" alt="Joya artesanal — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6469.webp" alt="Joya artesanal — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6471.webp" alt="Pieza única — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6472.webp" alt="Pieza única — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6474.webp" alt="Joya de plata — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6475.webp" alt="Joya de plata — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6476.webp" alt="Diseño orfebre — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6477.webp" alt="Diseño orfebre — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6478.webp" alt="Pieza de colección — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6479.webp" alt="Pieza de colección — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6482.webp" alt="Joya exclusiva — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6483.webp" alt="Joya exclusiva — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6486.webp" alt="Oro fino — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6488.webp" alt="Oro fino — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6491.webp" alt="Pieza artesanal — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6494.webp" alt="Pieza artesanal — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6495.webp" alt="Joya premium — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6497.webp" alt="Joya premium — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6498.webp" alt="Orfebrería — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6499.webp" alt="Orfebrería — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6504.webp" alt="Diseño exclusivo — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6507.webp" alt="Diseño exclusivo — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6508.webp" alt="Joya fina — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6512.webp" alt="Joya fina — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6516.webp" alt="Pieza orfebre — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6517.webp" alt="Pieza orfebre — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6518.webp" alt="Joya artesanal — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6523.webp" alt="Joya artesanal — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6527.webp" alt="Pieza premium — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6534.webp" alt="Pieza premium — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6535.webp" alt="Joya única — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6536.webp" alt="Joya única — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6539.webp" alt="Orfebrería fina — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6540.webp" alt="Orfebrería fina — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6543.webp" alt="Diseño artesanal — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6545.webp" alt="Diseño artesanal — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6547.webp" alt="Joya de oro — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6548.webp" alt="Joya de oro — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6549.webp" alt="Pieza fina — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6550.webp" alt="Pieza fina — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6551.webp" alt="Joya exclusiva — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6552.webp" alt="Joya exclusiva — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6553.webp" alt="Pieza de colección — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6555.webp" alt="Pieza de colección — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6557.webp" alt="Orfebrería — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6558.webp" alt="Orfebrería — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6559.webp" alt="Joya artesanal — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6560.webp" alt="Joya artesanal — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6564.webp" alt="Diseño único — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6565.webp" alt="Diseño único — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6566.webp" alt="Pieza exclusiva — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6567.webp" alt="Pieza exclusiva — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6569.webp" alt="Joya premium — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6570.webp" alt="Joya premium — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6571.webp" alt="Oro artesanal — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6572.webp" alt="Oro artesanal — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6574.webp" alt="Pieza fina — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6575.webp" alt="Pieza fina — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6577.webp" alt="Diseño orfebre — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6578.webp" alt="Diseño orfebre — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6579.webp" alt="Joya de colección — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6581.webp" alt="Joya de colección — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6583.webp" alt="Joya única — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                                <img src="img/joyas/real/_MG_6586.webp" alt="Joya única — Joyería Neny" class="gc-slide" loading="lazy" decoding="async"/>
-                            </div>
-                            <!-- Contador sutil de pieza -->
-                            <div class="jewel-showcase__counter">
-                                <span class="jewel-showcase__counter-current">01</span>
-                                <span class="jewel-showcase__counter-sep">/</span>
-                                <span class="jewel-showcase__counter-total">76</span>
+
+                            <div id="showcaseMainSlides" class="gc-slides jewel-showcase__slides cursor-pointer" role="button" tabindex="0" aria-label="Ampliar fotografía principal">
+                                <img src="img/joyas/argollas/IMG_3582.webp" alt="Joyería Neny" class="gc-slide is-active" loading="eager" decoding="async"/>
                             </div>
                         </div>
 
-                        <!-- Acento decorativo flotante — rombo pequeño -->
+                        <!-- Columna Derecha del Bento: 2 Vitrinas Dinámicas Secundarias -->
+                        <div class="jewel-bento-trio__side">
+
+                            <!-- Vitrina Dinámica 2 (Superior Derecha) -->
+                            <div id="gc-secondary-1" class="jewel-showcase__sub group cursor-pointer" role="button" tabindex="0" aria-label="Ampliar segunda vitrina">
+                                <div class="jewel-showcase__frame"></div>
+                                <div id="showcaseSub1Slides" class="gc-slides jewel-showcase__slides">
+                                    <img src="img/joyas/oro-italiano/IMG_3562.webp" alt="Joyería Neny" class="gc-slide is-active" loading="lazy" decoding="async"/>
+                                </div>
+                            </div>
+
+                            <!-- Vitrina Dinámica 3 (Inferior Derecha) -->
+                            <div id="gc-secondary-2" class="jewel-showcase__sub group cursor-pointer" role="button" tabindex="0" aria-label="Ampliar tercera vitrina">
+                                <div class="jewel-showcase__frame"></div>
+                                <div id="showcaseSub2Slides" class="gc-slides jewel-showcase__slides">
+                                    <img src="img/joyas/oro-blanco/IMG_3628.webp" alt="Joyería Neny" class="gc-slide is-active" loading="lazy" decoding="async"/>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Acento decorativo flotante -->
                         <div class="jewel-showcase__accent" aria-hidden="true">
                             <div class="jewel-showcase__accent-inner"></div>
                         </div>
-
-                        <!-- Línea decorativa dorada -->
-                        <div class="jewel-showcase__line" aria-hidden="true"></div>
-
                     </div>
 
                 </div>
+            </div>
+
+            <!-- 2. GALERÍA INTERACTIVA POR CATEGORÍAS (SOLO FOTOGRAFÍAS) -->
+            <div id="joyas-catalogo-interactivo" class="pt-10 sm:pt-12 border-t border-royal-blue/10 anime-reveal">
+
+                <!-- Pestañas / Filtros de Colección -->
+                <div id="joyasCategoryTabs" class="flex items-center justify-start sm:justify-center gap-2.5 overflow-x-auto no-scrollbar pb-4 mb-8" role="group" aria-label="Categorías de orfebrería y joyas">
+                    <!-- Inyectado dinámicamente por js/main.js -->
+                </div>
+
+                <!-- Grilla Interactiva de Fotografías -->
+                <div id="joyasInteractiveGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+                    <!-- Inyectado dinámicamente por js/main.js -->
+                </div>
+
+                <!-- Paginación / Botón Cargar Más -->
+                <div id="joyasPaginationContainer" class="mt-10 sm:mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <button type="button" id="joyasLoadMoreBtn" class="btn-pill-blue px-8 py-3.5 text-sm font-bold tracking-wider uppercase shadow-md hover:shadow-lg">
+                        <span id="joyasLoadMoreText">Ver más fotografías</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <button type="button" id="joyasCollapseBtn" class="hidden btn-pill-outline px-6 py-3.5 text-xs font-bold tracking-wider uppercase">
+                        Ver menos
+                    </button>
+                </div>
+
             </div>
 
         </div>
@@ -852,6 +815,39 @@
     </div>
 
 
+    <!-- Lightbox Minimalista con Cristal Translúcido -->
+    <div id="jewelLightbox" class="jewel-lightbox" role="dialog" aria-modal="true" aria-label="Vista ampliada de joya" aria-hidden="true">
+        <div id="jewelLightboxCard" class="jewel-lightbox__card">
+
+            <!-- Botón Cerrar sutil -->
+            <button type="button" id="closeJewelLightboxBtn" class="jewel-lightbox__close" aria-label="Cerrar vista ampliada">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+
+            <!-- Imagen en grande con flechas discretas -->
+            <div class="jewel-lightbox__stage">
+                <button type="button" id="lightboxPrevBtn" class="jewel-lightbox__nav jewel-lightbox__nav--prev" aria-label="Fotografía anterior">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                </button>
+
+                <img id="lightboxImg" src="img/joyas/argollas/IMG_3582.webp" alt="Joyería Neny" class="jewel-lightbox__img"/>
+
+                <button type="button" id="lightboxNextBtn" class="jewel-lightbox__nav jewel-lightbox__nav--next" aria-label="Fotografía siguiente">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </button>
+            </div>
+
+            <!-- Pequeño botón general de WhatsApp -->
+            <div class="jewel-lightbox__footer">
+                <a href="https://wa.me/56996234090?text=Hola,%20quisiera%20hacer%20una%20consulta%20sobre%20joyer%C3%ADa." target="_blank" class="jewel-lightbox__wa-btn">
+                    <svg class="w-4 h-4 fill-current flex-shrink-0" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                    <span>Consultar por WhatsApp</span>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
     <!-- Floating WhatsApp Button -->
     <a href="https://wa.me/56996234090?text=Hola,%20me%20gustar%C3%ADa%20hacer%20una%20consulta." 
        target="_blank" 
@@ -861,9 +857,10 @@
         <span class="hidden sm:inline">Cotizar por WhatsApp</span>
     </a>
 
-    <!-- Anime.js, Relojes Data & Main Script -->
+    <!-- Anime.js, Joyas Data, Relojes Data & Main Script -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-    <script src="js/relojes-data.js?v=4.2.0"></script>
-    <script src="js/main.js?v=4.2.0"></script>
+    <script src="js/joyas-data.js?v=4.3.0"></script>
+    <script src="js/relojes-data.js?v=4.3.0"></script>
+    <script src="js/main.js?v=4.3.0"></script>
 </body>
 </html>

@@ -313,51 +313,371 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 // ==========================================
-// 7. GALERÍA VITRINA PREMIUM (ORFEBRERÍA)
+// 7. SISTEMA MULTI-GALERÍA INTERACTIVA & LIGHTBOX MINIMALISTA (ORFEBRERÍA)
 // ==========================================
-(function initShowcaseGallery() {
+(function initOrfebreriaInteractiveSystem() {
+    if (typeof joyasCatalog === 'undefined' || typeof joyasCategories === 'undefined') return;
 
-    // -- Crossfade principal: un solo contenedor con todas las imágenes --
-    function setupShowcaseFade(container, intervalMs) {
-        const slides = container.querySelectorAll('.gc-slide');
-        if (!slides || slides.length < 2) return;
+    const PAGE_SIZE = 12;
+    let activeCategoryId = 'destacados';
+    let activeItems = [];
+    let visibleCount = PAGE_SIZE;
 
-        // Contador UI
-        const counterEl = document.querySelector('.jewel-showcase__counter-current');
-        const totalEl   = document.querySelector('.jewel-showcase__counter-total');
-        if (totalEl) totalEl.textContent = String(slides.length).padStart(2, '0');
+    // Estado de la Triple Vitrina Dinámica (Bento Trio)
+    let showcaseIdx = 0;
+    let showcaseTimer = null;
 
-        // Estado inicial: primera visible, resto ocultas
-        slides.forEach((s, i) => {
-            s.style.transition = 'opacity 1.4s cubic-bezier(0.4, 0, 0.2, 1)';
-            s.style.opacity    = i === 0 ? '1' : '0';
+    // Estado del Lightbox
+    let lightboxIdx = 0;
+    let touchStartX = 0;
+
+    // Referencias DOM — Explorador y Categorías
+    const tabsContainer = document.getElementById('joyasCategoryTabs');
+    const gridContainer = document.getElementById('joyasInteractiveGrid');
+    const loadMoreBtn = document.getElementById('joyasLoadMoreBtn');
+    const loadMoreText = document.getElementById('joyasLoadMoreText');
+    const collapseBtn = document.getElementById('joyasCollapseBtn');
+
+    // Referencias DOM — Vitrina Bento Trio
+    const gcSub1 = document.getElementById('gc-secondary-1');
+    const gcSub2 = document.getElementById('gc-secondary-2');
+    const mainSlidesEl = document.getElementById('showcaseMainSlides');
+    const sub1SlidesEl = document.getElementById('showcaseSub1Slides');
+    const sub2SlidesEl = document.getElementById('showcaseSub2Slides');
+
+    // Referencias DOM — Lightbox Modal Minimalista
+    const lightbox = document.getElementById('jewelLightbox');
+    const closeLightboxBtn = document.getElementById('closeJewelLightboxBtn');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxPrevBtn = document.getElementById('lightboxPrevBtn');
+    const lightboxNextBtn = document.getElementById('lightboxNextBtn');
+
+    function getItemsForCategory(catId) {
+        if (catId === 'destacados') {
+            return joyasCatalog.filter(item => item.featured);
+        }
+        return joyasCatalog.filter(item => item.category === catId);
+    }
+
+    // 1. Renderizar Pestañas de Categorías (Limpias)
+    function renderCategoryTabs() {
+        if (!tabsContainer) return;
+        tabsContainer.innerHTML = '';
+
+        joyasCategories.forEach(cat => {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.setAttribute('aria-pressed', cat.id === activeCategoryId ? 'true' : 'false');
+            btn.className = `joya-tab-btn ${cat.id === activeCategoryId ? 'is-active' : ''}`;
+            btn.textContent = cat.shortName;
+            btn.addEventListener('click', () => {
+                if (activeCategoryId === cat.id) return;
+                selectCategory(cat.id, true);
+            });
+            tabsContainer.appendChild(btn);
+        });
+    }
+
+    // 2. Actualizar imagen con crossfade suave en una vitrina
+    function crossfadeSlide(containerEl, item, eager) {
+        if (!containerEl || !item) return;
+        const existingImgs = containerEl.querySelectorAll('img.gc-slide');
+        const newImg = document.createElement('img');
+        newImg.src = item.src;
+        newImg.alt = 'Joyería Neny';
+        newImg.className = 'gc-slide';
+        newImg.loading = eager ? 'eager' : 'lazy';
+        newImg.decoding = 'async';
+        newImg.style.opacity = '0';
+
+        containerEl.appendChild(newImg);
+
+        requestAnimationFrame(() => {
+            newImg.style.opacity = '1';
+            existingImgs.forEach(oldImg => {
+                oldImg.style.opacity = '0';
+                setTimeout(() => {
+                    if (oldImg.parentNode === containerEl) {
+                        containerEl.removeChild(oldImg);
+                    }
+                }, 850);
+            });
+        });
+    }
+
+    function getSubIndices(baseIdx, total) {
+        if (total <= 1) return [0, 0];
+        const offset1 = Math.max(1, Math.floor(total / 3));
+        const offset2 = Math.max(2, Math.floor((total * 2) / 3));
+        const idx1 = (baseIdx + offset1) % total;
+        let idx2 = (baseIdx + offset2) % total;
+        if (idx2 === idx1 && total > 2) {
+            idx2 = (idx1 + 1) % total;
+        }
+        return [idx1, idx2];
+    }
+
+    // 3. Actualizar las 3 Vitrinas Dinámicas (Bento Trio sin textos ni controles)
+    function updateBentoShowcase() {
+        if (!activeItems.length) return;
+        const total = activeItems.length;
+        showcaseIdx = ((showcaseIdx % total) + total) % total;
+
+        const mainItem = activeItems[showcaseIdx];
+        const [sub1Idx, sub2Idx] = getSubIndices(showcaseIdx, total);
+        const sub1Item = activeItems[sub1Idx];
+        const sub2Item = activeItems[sub2Idx];
+
+        crossfadeSlide(mainSlidesEl, mainItem, true);
+        crossfadeSlide(sub1SlidesEl, sub1Item, false);
+        crossfadeSlide(sub2SlidesEl, sub2Item, false);
+    }
+
+    function restartShowcaseTimer() {
+        if (showcaseTimer) clearInterval(showcaseTimer);
+        showcaseTimer = setInterval(() => {
+            showcaseIdx = (showcaseIdx + 1) % Math.max(1, activeItems.length);
+            updateBentoShowcase();
+        }, 4200);
+    }
+
+    // 4. Renderizar la Galería Interactiva (Únicamente Fotografías Limpias)
+    function renderInteractiveGrid(animateNewFrom = 0) {
+        if (!gridContainer) return;
+        const slice = activeItems.slice(0, visibleCount);
+
+        if (animateNewFrom === 0) {
+            gridContainer.innerHTML = '';
+        }
+
+        slice.forEach((item, index) => {
+            if (index < animateNewFrom) return;
+
+            const card = document.createElement('div');
+            card.className = 'joya-card';
+            card.setAttribute('role', 'button');
+            card.setAttribute('tabindex', '0');
+            card.setAttribute('aria-label', 'Ver fotografía en tamaño completo');
+            card.innerHTML = `
+                <img src="${item.src}" alt="Joyería Neny" class="joya-card__img" loading="${index < 8 ? 'eager' : 'lazy'}" decoding="async" />
+            `;
+
+            const openHandler = () => openLightbox(index);
+            card.addEventListener('click', openHandler);
+            card.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    openHandler();
+                }
+            });
+
+            gridContainer.appendChild(card);
         });
 
-        let current = 0;
+        const shown = Math.min(visibleCount, activeItems.length);
 
-        function advance() {
-            const next = (current + 1) % slides.length;
-            slides[current].style.opacity = '0';
-            slides[next].style.opacity    = '1';
-            current = next;
-
-            // Actualizar contador
-            if (counterEl) {
-                counterEl.textContent = String(next + 1).padStart(2, '0');
+        if (loadMoreBtn && loadMoreText) {
+            const remaining = activeItems.length - shown;
+            if (remaining > 0) {
+                loadMoreBtn.classList.remove('hidden');
+                loadMoreText.textContent = 'Ver más fotografías';
+            } else {
+                loadMoreBtn.classList.add('hidden');
             }
         }
 
-        // Arrancar con un pequeño delay inicial
+        if (collapseBtn) {
+            if (shown > PAGE_SIZE) {
+                collapseBtn.classList.remove('hidden');
+            } else {
+                collapseBtn.classList.add('hidden');
+            }
+        }
+
+        if (typeof anime !== 'undefined') {
+            const allCards = Array.from(gridContainer.children);
+            const targetCards = allCards.slice(animateNewFrom);
+            if (targetCards.length) {
+                anime({
+                    targets: targetCards,
+                    opacity: [0, 1],
+                    translateY: [14, 0],
+                    delay: anime.stagger(35),
+                    duration: 420,
+                    easing: 'easeOutCubic'
+                });
+            }
+        }
+    }
+
+    // 5. Seleccionar Categoría
+    function selectCategory(catId, resetShowcase = true) {
+        activeCategoryId = catId;
+        activeItems = getItemsForCategory(catId);
+        visibleCount = PAGE_SIZE;
+
+        renderCategoryTabs();
+        renderInteractiveGrid(0);
+
+        if (resetShowcase) {
+            showcaseIdx = 0;
+            updateBentoShowcase();
+            restartShowcaseTimer();
+        }
+    }
+
+    // 6. Lightbox Minimalista con Transición Suave
+    function updateLightboxImage(animateFade = false) {
+        if (!activeItems.length || !lightboxImg) return;
+        const total = activeItems.length;
+        lightboxIdx = ((lightboxIdx % total) + total) % total;
+        const item = activeItems[lightboxIdx];
+
+        if (!animateFade) {
+            lightboxImg.src = item.src;
+            lightboxImg.style.opacity = '1';
+            lightboxImg.style.transform = 'scale(1)';
+            return;
+        }
+
+        lightboxImg.style.opacity = '0';
+        lightboxImg.style.transform = 'scale(0.97)';
         setTimeout(() => {
-            setInterval(advance, intervalMs);
-        }, 800);
+            lightboxImg.src = item.src;
+            lightboxImg.onload = () => {
+                lightboxImg.style.opacity = '1';
+                lightboxImg.style.transform = 'scale(1)';
+            };
+        }, 140);
     }
 
-    // Inicializar
-    const mainSlides = document.querySelector('#gc-main .gc-slides');
-    if (mainSlides) {
-        setupShowcaseFade(mainSlides, 4000);
+    function openLightbox(index) {
+        if (!lightbox || !activeItems.length) return;
+        lightboxIdx = index;
+        updateLightboxImage(false);
+        lightbox.setAttribute('aria-hidden', 'false');
+        lightbox.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
     }
 
+    function closeLightbox() {
+        if (!lightbox) return;
+        lightbox.classList.remove('is-open');
+        lightbox.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    }
+
+    if (mainSlidesEl) {
+        mainSlidesEl.addEventListener('click', () => openLightbox(showcaseIdx));
+        mainSlidesEl.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openLightbox(showcaseIdx);
+            }
+        });
+    }
+
+    if (gcSub1) {
+        const openSub1 = () => {
+            const [sub1Idx] = getSubIndices(showcaseIdx, activeItems.length);
+            openLightbox(sub1Idx);
+        };
+        gcSub1.addEventListener('click', openSub1);
+        gcSub1.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openSub1();
+            }
+        });
+    }
+
+    if (gcSub2) {
+        const openSub2 = () => {
+            const [, sub2Idx] = getSubIndices(showcaseIdx, activeItems.length);
+            openLightbox(sub2Idx);
+        };
+        gcSub2.addEventListener('click', openSub2);
+        gcSub2.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openSub2();
+            }
+        });
+    }
+
+    // Eventos de Paginación
+    if (loadMoreBtn) {
+        loadMoreBtn.addEventListener('click', () => {
+            const prevCount = visibleCount;
+            visibleCount = Math.min(activeItems.length, visibleCount + PAGE_SIZE);
+            renderInteractiveGrid(prevCount);
+        });
+    }
+
+    if (collapseBtn) {
+        collapseBtn.addEventListener('click', () => {
+            visibleCount = PAGE_SIZE;
+            renderInteractiveGrid(0);
+            const explorerEl = document.getElementById('joyas-catalogo-interactivo');
+            if (explorerEl) explorerEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    }
+
+    // Eventos del Lightbox
+    if (closeLightboxBtn) closeLightboxBtn.addEventListener('click', closeLightbox);
+    if (lightbox) {
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox || e.target.classList.contains('jewel-lightbox__stage')) {
+                closeLightbox();
+            }
+        });
+        lightbox.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+        lightbox.addEventListener('touchend', (e) => {
+            const deltaX = e.changedTouches[0].screenX - touchStartX;
+            if (Math.abs(deltaX) > 45) {
+                if (deltaX < 0) {
+                    lightboxIdx = (lightboxIdx + 1) % activeItems.length;
+                } else {
+                    lightboxIdx = (lightboxIdx - 1 + activeItems.length) % activeItems.length;
+                }
+                updateLightboxImage(true);
+            }
+        }, { passive: true });
+    }
+
+    if (lightboxPrevBtn) {
+        lightboxPrevBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            lightboxIdx = (lightboxIdx - 1 + activeItems.length) % activeItems.length;
+            updateLightboxImage(true);
+        });
+    }
+
+    if (lightboxNextBtn) {
+        lightboxNextBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            lightboxIdx = (lightboxIdx + 1) % activeItems.length;
+            updateLightboxImage(true);
+        });
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (!lightbox || !lightbox.classList.contains('is-open')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') {
+            lightboxIdx = (lightboxIdx - 1 + activeItems.length) % activeItems.length;
+            updateLightboxImage(true);
+        }
+        if (e.key === 'ArrowRight') {
+            lightboxIdx = (lightboxIdx + 1) % activeItems.length;
+            updateLightboxImage(true);
+        }
+    });
+
+    // Inicializar con la categoría 'destacados'
+    selectCategory('destacados', true);
 })();
+
 

@@ -19,3 +19,11 @@ Thumbs.db
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
+
+# Raw camera photo folders (optimized WebP versions live in img/joyas/)
+/transfer-01a0bb48/
+/Anillos varios/
+/Argollas /
+/Oro blanco /
+/Oro Italiano /
+/Pulsera dama/
