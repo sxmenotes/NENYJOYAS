@@ -338,7 +338,7 @@ body {
     gap: 1rem;
 }
 
-/* --- Vitrina Principal --- */
+/* --- Vitrina Principal (Portada sin zoom) --- */
 .jewel-showcase__main {
     position: relative;
     width: 100%;
@@ -346,22 +346,14 @@ body {
     border-radius: 1.25rem;
     overflow: hidden;
     z-index: 2;
+    cursor: default;
     background-color: #0A163B;
     box-shadow:
         0 24px 60px -12px rgba(22, 44, 109, 0.22),
         0 8px 20px -4px rgba(22, 44, 109, 0.10);
-    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-                box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.jewel-showcase__main:hover {
-    transform: translateY(-3px);
-    box-shadow:
-        0 32px 70px -12px rgba(22, 44, 109, 0.28),
-        0 12px 28px -4px rgba(22, 44, 109, 0.14);
-}
-
-/* --- Vitrinas Secundarias (Bento Derecho) --- */
+/* --- Vitrinas Secundarias (Bento Derecho, sin zoom) --- */
 .jewel-showcase__sub {
     position: relative;
     width: 100%;
@@ -369,18 +361,11 @@ body {
     border-radius: 1.15rem;
     overflow: hidden;
     z-index: 2;
+    cursor: default;
     background-color: #0A163B;
     box-shadow:
         0 16px 36px -10px rgba(22, 44, 109, 0.16),
         0 4px 12px -2px rgba(22, 44, 109, 0.08);
-    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-                box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.jewel-showcase__sub:hover {
-    transform: translateY(-3px);
-    box-shadow:
-        0 22px 44px -10px rgba(22, 44, 109, 0.24);
 }
 
 /* Marco decorativo de doble borde — efecto "joyero" */
@@ -391,12 +376,6 @@ body {
     border-radius: 0.9rem;
     z-index: 10;
     pointer-events: none;
-    transition: border-color 0.5s ease;
-}
-
-.jewel-showcase__main:hover .jewel-showcase__frame,
-.jewel-showcase__sub:hover .jewel-showcase__frame {
-    border-color: rgba(255, 255, 255, 0.42);
 }
 
 /* Esquinas ornamentales — detalles tipo "filigrana" */
@@ -413,12 +392,6 @@ body {
     content: '';
     position: absolute;
     background-color: rgba(255, 255, 255, 0.45);
-    transition: background-color 0.5s ease;
-}
-
-.jewel-showcase__main:hover .jewel-showcase__corner::before,
-.jewel-showcase__main:hover .jewel-showcase__corner::after {
-    background-color: rgba(255, 255, 255, 0.75);
 }
 
 .jewel-showcase__corner::before {
@@ -460,12 +433,7 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: opacity 0.85s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.jewel-showcase__main:hover .gc-slide,
-.jewel-showcase__sub:hover .gc-slide {
-    transform: scale(1.04);
+    transition: opacity 0.9s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* --- Acento Decorativo Flotante (rombo) --- */
@@ -494,6 +462,11 @@ body {
 }
 
 /* --- Pestañas / Filtros de Categorías --- */
+#joyasCategoryTabs {
+    padding-top: 6px;
+    padding-bottom: 16px;
+}
+
 .joya-tab-btn {
     display: inline-flex;
     align-items: center;

@@ -319,13 +319,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typeof joyasCatalog === 'undefined' || typeof joyasCategories === 'undefined') return;
 
     const PAGE_SIZE = 12;
-    let activeCategoryId = 'destacados';
+    let activeCategoryId = (joyasCategories[0] && joyasCategories[0].id) ? joyasCategories[0].id : 'cadenas';
     let activeItems = [];
     let visibleCount = PAGE_SIZE;
-
-    // Estado de la Triple Vitrina Dinámica (Bento Trio)
-    let showcaseIdx = 0;
-    let showcaseTimer = null;
 
     // Estado del Lightbox
     let lightboxIdx = 0;
@@ -338,9 +334,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const loadMoreText = document.getElementById('joyasLoadMoreText');
     const collapseBtn = document.getElementById('joyasCollapseBtn');
 
-    // Referencias DOM — Vitrina Bento Trio
-    const gcSub1 = document.getElementById('gc-secondary-1');
-    const gcSub2 = document.getElementById('gc-secondary-2');
+    // Referencias DOM — Galería de Portada (Bento Trio con carpeta Modelo, sin zoom)
     const mainSlidesEl = document.getElementById('showcaseMainSlides');
     const sub1SlidesEl = document.getElementById('showcaseSub1Slides');
     const sub2SlidesEl = document.getElementById('showcaseSub2Slides');
@@ -353,9 +347,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const lightboxNextBtn = document.getElementById('lightboxNextBtn');
 
     function getItemsForCategory(catId) {
-        if (catId === 'destacados') {
-            return joyasCatalog.filter(item => item.featured);
-        }
         return joyasCatalog.filter(item => item.category === catId);
     }
 
@@ -372,18 +363,18 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.textContent = cat.shortName;
             btn.addEventListener('click', () => {
                 if (activeCategoryId === cat.id) return;
-                selectCategory(cat.id, true);
+                selectCategory(cat.id);
             });
             tabsContainer.appendChild(btn);
         });
     }
 
-    // 2. Actualizar imagen con crossfade suave en una vitrina
-    function crossfadeSlide(containerEl, item, eager) {
-        if (!containerEl || !item) return;
+    // 2. Actualizar imagen con crossfade suave en una vitrina de portada
+    function crossfadeSlide(containerEl, src, eager) {
+        if (!containerEl || !src) return;
         const existingImgs = containerEl.querySelectorAll('img.gc-slide');
         const newImg = document.createElement('img');
-        newImg.src = item.src;
+        newImg.src = src;
         newImg.alt = 'Joyería Neny';
         newImg.className = 'gc-slide';
         newImg.loading = eager ? 'eager' : 'lazy';
@@ -400,45 +391,63 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (oldImg.parentNode === containerEl) {
                         containerEl.removeChild(oldImg);
                     }
-                }, 850);
+                }, 900);
             });
         });
     }
 
-    function getSubIndices(baseIdx, total) {
-        if (total <= 1) return [0, 0];
-        const offset1 = Math.max(1, Math.floor(total / 3));
-        const offset2 = Math.max(2, Math.floor((total * 2) / 3));
-        const idx1 = (baseIdx + offset1) % total;
-        let idx2 = (baseIdx + offset2) % total;
-        if (idx2 === idx1 && total > 2) {
-            idx2 = (idx1 + 1) % total;
+    // 3. Galería de Portada Aleatoria e Intercalada (Exclusiva carpeta Modelo, sin zoom)
+    function initModeloCoverShowcase() {
+        const coverPool = (typeof joyasModeloCover !== 'undefined' && Array.isArray(joyasModeloCover) && joyasModeloCover.length >= 3)
+            ? joyasModeloCover.slice()
+            : [];
+        if (!coverPool.length) return;
+
+        const frames = [mainSlidesEl, sub1SlidesEl, sub2SlidesEl];
+        const currentVisible = [null, null, null];
+        let deck = [];
+        let frameTurn = 0;
+
+        function shuffleArray(arr) {
+            const copy = arr.slice();
+            for (let i = copy.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                const tmp = copy[i];
+                copy[i] = copy[j];
+                copy[j] = tmp;
+            }
+            return copy;
         }
-        return [idx1, idx2];
-    }
 
-    // 3. Actualizar las 3 Vitrinas Dinámicas (Bento Trio sin textos ni controles)
-    function updateBentoShowcase() {
-        if (!activeItems.length) return;
-        const total = activeItems.length;
-        showcaseIdx = ((showcaseIdx % total) + total) % total;
+        function drawNextModeloPhoto() {
+            if (!deck.length) {
+                deck = shuffleArray(coverPool);
+            }
+            // Buscar la primera foto del mazo barajado que no esté visible actualmente en ninguno de los 3 cuadros
+            let chosenIdx = deck.findIndex(src => !currentVisible.includes(src));
+            if (chosenIdx === -1) {
+                deck = shuffleArray(coverPool);
+                chosenIdx = deck.findIndex(src => !currentVisible.includes(src));
+                if (chosenIdx === -1) chosenIdx = 0;
+            }
+            const [picked] = deck.splice(chosenIdx, 1);
+            return picked;
+        }
 
-        const mainItem = activeItems[showcaseIdx];
-        const [sub1Idx, sub2Idx] = getSubIndices(showcaseIdx, total);
-        const sub1Item = activeItems[sub1Idx];
-        const sub2Item = activeItems[sub2Idx];
+        // Selección aleatoria inicial para los 3 cuadros de portada
+        frames.forEach((frameEl, idx) => {
+            const initialSrc = drawNextModeloPhoto();
+            currentVisible[idx] = initialSrc;
+            crossfadeSlide(frameEl, initialSrc, idx === 0);
+        });
 
-        crossfadeSlide(mainSlidesEl, mainItem, true);
-        crossfadeSlide(sub1SlidesEl, sub1Item, false);
-        crossfadeSlide(sub2SlidesEl, sub2Item, false);
-    }
-
-    function restartShowcaseTimer() {
-        if (showcaseTimer) clearInterval(showcaseTimer);
-        showcaseTimer = setInterval(() => {
-            showcaseIdx = (showcaseIdx + 1) % Math.max(1, activeItems.length);
-            updateBentoShowcase();
-        }, 4200);
+        // Ciclo continuo que intercala aleatoriamente las fotos entre las 3 vitrinas de portada
+        setInterval(() => {
+            const nextSrc = drawNextModeloPhoto();
+            currentVisible[frameTurn] = nextSrc;
+            crossfadeSlide(frames[frameTurn], nextSrc, false);
+            frameTurn = (frameTurn + 1) % frames.length;
+        }, 2500);
     }
 
     // 4. Renderizar la Galería Interactiva (Únicamente Fotografías Limpias)
@@ -511,19 +520,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 5. Seleccionar Categoría
-    function selectCategory(catId, resetShowcase = true) {
+    function selectCategory(catId) {
         activeCategoryId = catId;
         activeItems = getItemsForCategory(catId);
         visibleCount = PAGE_SIZE;
 
         renderCategoryTabs();
         renderInteractiveGrid(0);
-
-        if (resetShowcase) {
-            showcaseIdx = 0;
-            updateBentoShowcase();
-            restartShowcaseTimer();
-        }
     }
 
     // 6. Lightbox Minimalista con Transición Suave
@@ -565,44 +568,6 @@ document.addEventListener('DOMContentLoaded', () => {
         lightbox.classList.remove('is-open');
         lightbox.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
-    }
-
-    if (mainSlidesEl) {
-        mainSlidesEl.addEventListener('click', () => openLightbox(showcaseIdx));
-        mainSlidesEl.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                openLightbox(showcaseIdx);
-            }
-        });
-    }
-
-    if (gcSub1) {
-        const openSub1 = () => {
-            const [sub1Idx] = getSubIndices(showcaseIdx, activeItems.length);
-            openLightbox(sub1Idx);
-        };
-        gcSub1.addEventListener('click', openSub1);
-        gcSub1.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                openSub1();
-            }
-        });
-    }
-
-    if (gcSub2) {
-        const openSub2 = () => {
-            const [, sub2Idx] = getSubIndices(showcaseIdx, activeItems.length);
-            openLightbox(sub2Idx);
-        };
-        gcSub2.addEventListener('click', openSub2);
-        gcSub2.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                openSub2();
-            }
-        });
     }
 
     // Eventos de Paginación
@@ -676,8 +641,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Inicializar con la categoría 'destacados'
-    selectCategory('destacados', true);
+    // Inicializar Galería de Portada (Modelo) y Galería de Categorías
+    initModeloCoverShowcase();
+    selectCategory(activeCategoryId);
 })();
 
 
